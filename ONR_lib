@@ -1,0 +1,1044 @@
+[General]
+SyntaxVersion=2
+MacroID=4c0fbf32-c596-4eee-b8cd-f6d65200215d
+[Comment]
+
+[Script]
+//请在下面写上您的子程序或函数
+//写完保存后，在任一命令库上点击右键并选择“刷新”即可
+//
+Function report_open(search_str)
+    //通用 - 打开Report界面
+    MoveTo 591, 456
+    Delay 300
+    KeyDown "LeftAlt", 1
+    KeyDown "Alt", 1
+    Delay 30
+    KeyDown "LeftAlt", 1
+    KeyDown "Alt", 1
+    Delay 20
+    KeyDown "M", 1
+    Delay 100
+    KeyUp "M", 1
+    Delay 300
+    KeyUp "LeftAlt", 1
+    KeyUp "Alt", 1
+    Delay 300
+    KeyDown "R", 1
+    Delay 90
+    KeyUp "R", 1
+	
+    //SayString 处输入搜索报表字段
+    Delay 200
+    SayString search_str
+    Delay 200
+	
+    //通用 - 操作为：搜索报表，勾选Print to PDF，打开报表选项
+    MoveTo 583, 340
+    MoveTo 785, 231
+    Delay 200
+    LeftClick 1
+    MoveTo 487, 589
+    Delay 200
+    LeftClick 1
+    MoveTo 605, 333
+    Delay 200
+    LeftClick 1
+    Delay 50
+    LeftClick 1
+    Delay 200
+End Function
+
+
+Function report_save(savename)
+    //SayString 处输入需要保存的文件名
+    Delay 500
+    SayString savename
+    Delay 200
+	
+    //通用 - 操作为：保存，等待8秒后关闭reports界面
+    KeyDown "Enter", 1
+    Delay 100
+    KeyUp "Enter", 1
+	
+    Delay 5000
+	
+    MoveTo 600, 600
+    LeftClick 1
+    Delay 200
+    KeyDown "Alt", 1
+    KeyDown "LeftAlt", 1
+    Delay 70
+    KeyDown "C", 1
+    Delay 90
+    KeyUp "LeftAlt", 1
+    KeyUp "Alt", 1
+    Delay 10
+    KeyUp "C", 1
+End Function
+
+
+Function Comp()
+    LockMouse
+
+    Call report_open("%complimentary")
+	
+    //专用 - 操作为：报表相关选项选择
+    KeyDown "LeftAlt", 1
+    KeyDown "Alt", 1
+    Delay 440
+    KeyDown "F", 1
+    Delay 80
+    KeyUp "F", 1
+    Delay 20
+    KeyUp "LeftAlt", 1
+    KeyUp "Alt", 1
+    Delay 300
+    KeyDown "BackSpace", 1
+    Delay 83
+    KeyUp "BackSpace", 1
+	
+    Call report_save("comp.pdf")
+    
+    UnlockMouse
+End Function
+
+
+Function NA02()
+    LockMouse
+    
+    Call report_open("FI01")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 749, 333
+    Delay 540
+    KeyDown "LeftAlt", 1
+    KeyDown "Alt", 1
+    Delay 370
+    KeyDown "O", 1
+    Delay 60
+    KeyUp "O", 1
+    Delay 130
+    KeyUp "LeftAlt", 1
+    KeyUp "Alt", 1
+    MoveTo 600, 512
+    Delay 1820
+    LeftClick 1
+    Delay 470
+    KeyDown "LeftAlt", 1
+    KeyDown "Alt", 1
+    Delay 210
+    KeyDown "F", 1
+    Delay 100
+    KeyUp "F", 1
+    Delay 200
+    KeyUp "LeftAlt", 1
+    KeyUp "Alt", 1
+    Delay 1000
+    KeyDown "BackSpace", 1
+    Delay 83
+    KeyUp "BackSpace", 1
+	
+	Call report_save("NA02-MANAGER FLASH.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function RS05 ()
+    LockMouse 
+    
+    Call report_open("rs05")
+    
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 644, 178
+    Delay 480
+    LeftDown 1
+    MoveTo 542, 170
+    Delay 500
+    LeftUp 1
+    MoveTo 527, 151
+    Delay 580
+    KeyDown "Num -", 1
+    Delay 90
+    KeyUp "Num -", 1
+    Delay 110
+    KeyDown "Num 8", 1
+    Delay 70
+    KeyUp "Num 8", 1
+    MoveTo 646, 204
+    Delay 500
+    LeftDown 1
+    MoveTo 533, 219
+    Delay 620
+    LeftUp 1
+    MoveTo 473, 270
+    Delay 600
+    KeyDown "Num -", 1
+    Delay 90
+    KeyUp "Num -", 1
+    Delay 120
+    KeyDown "Num 8", 1
+    Delay 100
+    KeyUp "Num 8", 1
+    MoveTo 617, 641
+    Delay 300
+    KeyDown "Tab", 1
+    MoveTo 615, 662
+    Delay 150
+    KeyUp "Tab", 1
+    MoveTo 610, 689
+    Delay 300
+    LeftClick 1
+    Delay 470
+    KeyDown "LeftAlt", 1
+    KeyDown "Alt", 1
+    Delay 210
+    KeyDown "F", 1
+    Delay 100
+    KeyUp "F", 1
+    Delay 200
+    KeyUp "LeftAlt", 1
+    KeyUp "Alt", 1
+    Delay 1000
+    KeyDown "BackSpace", 1
+    Delay 83
+    KeyUp "BackSpace", 1
+	
+	Call report_save("RS05-Tim.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function RS05this()
+'##########日期计算##########
+//夜审前日期确定（非必须）
+my_month = Month(Date-1)
+If my_month < 10 Then 
+	my_month =  "0" & my_month
+End If
+
+my_day = Day(Date-1)
+If my_day < 10 Then 
+	my_day =  "0" & my_day
+End If
+
+my_year = Year(Date - 1)
+
+//本月&次月最后一天
+last_day = Day(DateSerial(Year(Date-1), Month(Date-1) + 1, 1 - 1))
+last_day_next = Day(DateSerial(Year(Date-1), Month(Date-1) + 2, 1 - 1))
+
+//次月月份
+month_next = Month(Date - 1) + 1
+If month_next < 10 Then 
+	month_next = "0" & month_next
+ElseIf month_next = 13 Then
+	month_next = "01"
+End If
+
+//是否跳次年
+If (Month(Date - 1) + 1) = 13 Then 
+	my_year_next = year(Date) + 1
+
+End If
+
+//生成当月自然月rs05日期
+//字段一：
+my_date_first = my_month & "01" & my_year
+TracePrint my_date_first
+//字段二：
+my_date_last =  my_month & last_day & my_year
+TracePrint my_date_last
+
+
+//生成次月自然月rs05日期
+//	字段三：
+my_date_first_next = month_next & "01" & my_year
+TracePrint my_date_first_next
+//	字段四：	
+my_date_last_next = month_next & last_day_next & my_year
+TracePrint my_date_last_next
+'##########日期计算##########
+
+    LockMouse 
+    
+    Call report_open("rs05")
+    
+    //专用 - 操作为：报表相关选项选择
+	MoveTo 652, 210
+	Delay 300
+	KeyDown "BackSpace", 1
+	Delay 55
+	KeyUp "BackSpace", 1
+
+	Delay 300
+   	SayString my_date_first
+   	Delay 300
+   	
+	MoveTo 637, 200
+	MoveTo 645, 205
+	Delay 620
+	LeftDown 1
+	MoveTo 531, 204
+	Delay 504
+	LeftUp 1
+	Delay 344
+	KeyDown "BackSpace", 1
+	Delay 88
+	KeyUp "BackSpace", 1
+
+    SayString my_date_last
+    
+    MoveTo 617, 641
+    Delay 300
+    KeyDown "Tab", 1
+    MoveTo 615, 662
+    Delay 150
+    KeyUp "Tab", 1
+    MoveTo 610, 689
+    Delay 300
+    LeftClick 1
+    Delay 470
+    KeyDown "LeftAlt", 1
+    KeyDown "Alt", 1
+    Delay 210
+    KeyDown "F", 1
+    Delay 100
+    KeyUp "F", 1
+    Delay 200
+    KeyUp "LeftAlt", 1
+    KeyUp "Alt", 1
+    Delay 1000
+    KeyDown "BackSpace", 1
+    Delay 83
+    KeyUp "BackSpace", 1
+	
+	Call report_save("RS05-"& Month(Date-1) &"月.pdf")
+
+    UnlockMouse
+	
+End Function
+
+
+Function RS05next()
+'##########日期计算##########
+//夜审前日期确定（非必须）
+my_month = Month(Date-1)
+If my_month < 10 Then 
+	my_month =  "0" & my_month
+End If
+
+my_day = Day(Date-1)
+If my_day < 10 Then 
+	my_day =  "0" & my_day
+End If
+
+my_year = Year(Date - 1)
+
+//本月&次月最后一天
+last_day = Day(DateSerial(Year(Date-1), Month(Date-1) + 1, 1 - 1))
+last_day_next = Day(DateSerial(Year(Date-1), Month(Date-1) + 2, 1 - 1))
+
+//次月月份
+month_next = Month(Date - 1) + 1
+If month_next < 10 Then 
+	month_next = "0" & month_next
+ElseIf month_next = 13 Then
+	month_next = "01"
+End If
+
+//是否跳次年
+If (Month(Date - 1) + 1) = 13 Then 
+	my_year_next = year(Date) + 1
+Else 
+	my_year_next = my_year
+End If
+
+//生成当月自然月rs05日期
+//字段一：
+my_date_first = my_month & "01" & my_year
+TracePrint my_date_first
+//字段二：
+my_date_last =  my_month & last_day & my_year
+TracePrint my_date_last
+
+
+//生成次月自然月rs05日期
+//	字段三：
+my_date_first_next = month_next & "01" & my_year_next
+TracePrint my_date_first_next
+//	字段四：	
+my_date_last_next = month_next & last_day_next & my_year_next
+TracePrint my_date_last_next
+'##########日期计算##########
+
+    LockMouse 
+    
+    Call report_open("rs05")
+    
+    //专用 - 操作为：报表相关选项选择
+	MoveTo 652, 210
+	Delay 300
+	KeyDown "BackSpace", 1
+	Delay 55
+	KeyUp "BackSpace", 1
+
+	Delay 300
+   	SayString my_date_first_next
+   	Delay 300
+   	
+	MoveTo 637, 200
+	MoveTo 645, 205
+	Delay 620
+	LeftDown 1
+	MoveTo 531, 204
+	Delay 504
+	LeftUp 1
+	Delay 344
+	KeyDown "BackSpace", 1
+	Delay 88
+	KeyUp "BackSpace", 1
+
+    SayString my_date_last_next
+    
+    MoveTo 617, 641
+    Delay 300
+    KeyDown "Tab", 1
+    MoveTo 615, 662
+    Delay 150
+    KeyUp "Tab", 1
+    MoveTo 610, 689
+    Delay 300
+    LeftClick 1
+    Delay 470
+    KeyDown "LeftAlt", 1
+    KeyDown "Alt", 1
+    Delay 210
+    KeyDown "F", 1
+    Delay 100
+    KeyUp "F", 1
+    Delay 200
+    KeyUp "LeftAlt", 1
+    KeyUp "Alt", 1
+    Delay 1000
+    KeyDown "BackSpace", 1
+    Delay 83
+    KeyUp "BackSpace", 1
+	
+	Call report_save("RS05-"& month_next &"月.pdf")
+
+    UnlockMouse
+	
+End Function
+
+
+Function VIPARR ()
+    LockMouse 
+    
+    Call report_open("FO01-VIP")
+
+	//专用 - 操作为：报表相关选项选择
+    MoveTo 616, 372
+    MoveTo 464, 204
+    Delay 1623
+    LeftDown 1
+    MoveTo 336, 198
+    Delay 882
+    LeftUp 1
+    Delay 1170
+    KeyDown "Num +", 1
+    Delay 78
+    KeyUp "Num +", 1
+    Delay 171
+    KeyDown "Num 2", 1
+    Delay 94
+    KeyUp "Num 2", 1
+    MoveTo 610, 620
+    Delay 1387
+    LeftClick 1
+    MoveTo 632, 593
+    Delay 577
+    LeftClick 1
+    MoveTo 610, 743
+    Delay 702
+    LeftClick 1
+    Delay 94
+    MoveTo 627, 728
+    Delay 546
+    KeyDown "BackSpace", 1
+    Delay 62
+    KeyUp "BackSpace", 1
+
+	Call report_save("FO01-VIP ARR.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function VIPINH ()
+    LockMouse
+
+	Call report_open("%GUEST INH WITHOUT DUE OUT")
+
+    //专用 - 操作为：报表相关选项选择
+    KeyDown "Alt", 1
+    Delay 312
+    KeyDown "F", 1
+    Delay 125
+    KeyUp "Alt", 1
+    Delay 31
+    KeyUp "F", 1
+    Delay300 
+    MoveTo 639, 434
+    Delay 468
+    KeyDown "BackSpace", 1
+    Delay 63
+    KeyUp "BackSpace", 1
+
+	Call report_save("VIP INH-Guest INH without due out.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function VIPDEP ()
+    LockMouse 
+    
+    Call report_open("FO03")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 597, 442
+    MoveTo 600, 545
+    Delay 1373
+    LeftClick 1
+    MoveTo 632, 387
+    Delay 499
+    LeftDown 1
+    MoveTo 633, 386
+    Delay 94
+    LeftUp 1
+    MoveTo 864, 385
+    Delay 967
+    LeftDown 1
+    MoveTo 862, 385
+    Delay 109
+    LeftUp 1
+    MoveTo 822, 454
+    Delay 296
+    KeyDown "Alt", 1
+    MoveTo 798, 491
+    Delay 250
+    KeyDown "A", 1
+    MoveTo 795, 507
+    Delay 109
+    KeyUp "Alt", 1
+    Delay 16
+    KeyUp "A", 1
+    MoveTo 850, 578
+    Delay 530
+    LeftClick 1
+    MoveTo 635, 681
+    Delay 1076
+    LeftClick 1
+    Delay 300
+    KeyDown "BackSpace", 1
+    Delay 63
+    KeyUp "BackSpace", 1
+
+	Call report_save("FO03-VIP DEP.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function FO10 ()
+    //此处为录入录制
+    //所有需要录入的文字均必须以SayString录入	
+End Function
+
+
+Function FO01 ()
+    LockMouse
+
+	Call report_open("FO01")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 591, 353
+    MoveTo 309, 566
+    Delay 1326
+    LeftClick 1
+    MoveTo 317, 619
+    Delay 577
+    LeftDown 1
+    MoveTo 317, 620
+    Delay 93
+    LeftUp 1
+    MoveTo 325, 663
+    Delay 609
+    LeftClick 1
+    MoveTo 599, 594
+    Delay 655
+    LeftClick 1
+    MoveTo 608, 618
+    Delay 405
+    LeftDown 1
+    MoveTo 609, 618
+    Delay 141
+    LeftUp 1
+    MoveTo 617, 739
+    Delay 764
+    LeftDown 1
+    MoveTo 618, 739
+    Delay 94
+    LeftUp 1
+    Delay 1685
+    KeyDown "BackSpace", 1
+    Delay 78
+    KeyUp "BackSpace", 1
+
+	Call report_save("FO01-Arrival Detailed.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function FO02 ()
+    LockMouse 
+    
+    Call report_open("FO02")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 574, 408
+    MoveTo 433, 523
+    Delay 1341
+    LeftClick 1
+    MoveTo 625, 713
+    Delay 826
+    LeftClick 1
+    Delay 1669
+    KeyDown "BackSpace", 1
+    Delay 78
+    KeyUp "BackSpace", 1
+
+	Call report_save("FO02-INH.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function FO03 ()
+    LockMouse 
+    
+    Call report_open("FO03")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 613, 513
+    MoveTo 607, 540
+    Delay 1076
+    LeftDown 1
+    MoveTo 608, 541
+    Delay 156
+    LeftUp 1
+    MoveTo 488, 490
+    Delay 484
+    LeftClick 1
+    MoveTo 613, 680
+    Delay 858
+    LeftClick 1
+    Delay 1419
+    KeyDown "BackSpace", 1
+    Delay 94
+    KeyUp "BackSpace", 1
+
+	Call report_save("FO03-DEP.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function FO11 ()
+    LockMouse 
+    
+    Call report_open("FO11")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 727, 502
+    MoveTo 686, 474
+    Delay 982
+    LeftDown 1
+    MoveTo 669, 474
+    Delay 110
+    LeftUp 1
+    MoveTo 409, 522
+    Delay 670
+    LeftClick 1
+    MoveTo 626, 682
+    Delay 717
+    LeftClick 1
+    Delay 1264
+    KeyDown "BackSpace", 1
+    Delay 93
+    KeyUp "BackSpace", 1
+	
+	Call report_save("FO11-CREDIT LIMIT.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function FO13BF ()
+    LockMouse 
+    
+    report_open("FO13")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 623, 508
+    MoveTo 599, 276
+    Delay 1154
+    LeftDown 1
+    MoveTo 519, 279
+    Delay 389
+    LeftUp 1
+    Delay 406
+    KeyDown "Num -", 1
+    MoveTo 560, 279
+    Delay 140
+    KeyUp "Num -", 1
+    Delay 187
+    KeyDown "Num 1", 1
+    Delay 141
+    KeyUp "Num 1", 1
+    Delay 31
+    KeyDown "Enter", 1
+    Delay 78
+    KeyUp "Enter", 1
+    MoveTo 609, 269
+    Delay 686
+    LeftDown 1
+    MoveTo 470, 283
+    Delay 375
+    LeftUp 1
+    Delay 3
+    KeyDown "Ctrl", 1
+    MoveTo 555, 293
+    Delay 62
+    KeyDown "C", 1
+    MoveTo 579, 299
+    Delay 78
+    KeyUp "Ctrl", 1
+    MoveTo 583, 299
+    Delay 16
+    KeyUp "C", 1
+    MoveTo 605, 303
+    Delay 281
+    LeftDown 1
+    MoveTo 496, 306
+    Delay 283
+    LeftUp 1
+    MoveTo 494, 307
+    Delay 34
+    KeyDown "Ctrl", 1
+    MoveTo 496, 317
+    Delay 109
+    KeyDown "V", 1
+    MoveTo 514, 361
+    Delay 78
+    KeyUp "V", 1
+    MoveTo 520, 381
+    Delay 16
+    KeyUp "Ctrl", 1
+    MoveTo 463, 518
+    Delay 780
+    LeftClick 1
+    Delay 406
+    KeyDown "Alt", 1
+    Delay 296
+    KeyDown "F", 1
+    Delay 94
+    KeyUp "Alt", 1
+    Delay 16
+    KeyUp "F", 1
+    Delay 1435
+    KeyDown "BackSpace", 1
+    Delay 78
+    KeyUp "BackSpace", 1
+
+	Call report_save("FO13-Packages 早餐.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function Rooms ()
+    LockMouse 
+    
+    Call report_open("%hkroomstatusperroom")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 558, 483
+    MoveTo 476, 515
+    Delay 1030
+    LeftClick 1
+    Delay 437
+    KeyDown "Alt", 1
+    Delay 249
+    KeyDown "F", 1
+    Delay 63
+    KeyUp "Alt", 1
+    Delay 15
+    KeyUp "F", 1
+    Delay 1248
+    KeyDown "BackSpace", 1
+    Delay 78
+    KeyUp "BackSpace", 1
+
+	Call report_save("Rooms.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function HK03 ()
+    LockMouse 
+    
+    Call report_open("HK03")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 487, 488
+    Delay 296
+    KeyDown "Alt", 1
+    Delay 78
+    KeyDown "F", 1
+    Delay 62
+    KeyUp "Alt", 1
+    Delay 16
+    KeyUp "F", 1
+    Delay 1170
+    KeyDown "BackSpace", 1
+    Delay 78
+    KeyUp "BackSpace", 1
+
+	Call report_save("HK03-OOO.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function GroupRoom ()
+    LockMouse 
+    
+    Call report_open("GROUP ROOMING LIST")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 453, 546
+    MoveTo 372, 544
+    Delay 858
+    LeftClick 1
+    MoveTo 520, 466
+    Delay 624
+    LeftClick 1
+    MoveTo 532, 549
+    Delay 562
+    LeftClick 1
+    Delay 468
+    KeyDown "Alt", 1
+    Delay 468
+    KeyDown "F", 1
+    Delay 93
+    KeyUp "F", 1
+    Delay 63
+    KeyUp "Alt", 1
+    Delay 1404
+    KeyDown "BackSpace", 1
+    Delay 78
+    KeyUp "BackSpace", 1
+    
+    Call report_save("Group rooming list.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function GroupIn ()
+    LockMouse 
+    
+    Call report_open("GROUP IN HOUSE")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 632, 450
+    MoveTo 470, 425
+    Delay 858
+    LeftClick 1
+    MoveTo 625, 493
+    Delay 562
+    LeftClick 1
+    Delay 249
+    KeyDown "Alt", 1
+    Delay 312
+    KeyDown "F", 1
+    Delay 109
+    KeyUp "Alt", 1
+    KeyUp "F", 1
+    Delay 1514
+    KeyDown "BackSpace", 1
+    Delay 78
+    KeyUp "BackSpace", 1
+
+	Call report_save("Group INH.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function NoShow ()
+    LockMouse 
+    
+    Call report_open("FO08")
+
+    //专用 - 操作为：报表相关选项选择
+
+	MoveTo 573, 440
+	Delay 918
+	KeyDown "BackSpace", 1
+	Delay 64
+	KeyUp "BackSpace", 1
+	Delay 265
+	KeyDown "Num -", 1
+	Delay 127
+	KeyUp "Num -", 1
+	Delay 72
+	KeyDown "Num 1", 1
+	Delay 112
+	KeyUp "Num 1", 1
+	Delay 55
+	KeyDown "Tab", 1
+	Delay 81
+	KeyUp "Tab", 1
+	Delay 367
+	KeyDown "Num -", 1
+	Delay 96
+	KeyUp "Num -", 1
+	Delay 88
+	KeyDown "Num 1", 1
+	Delay 97
+	KeyUp "Num 1", 1
+	Delay 224
+	KeyDown "Alt", 1
+	Delay 150
+	KeyDown "F", 1
+	Delay 137
+	KeyUp "Alt", 1
+	Delay 7
+	KeyUp "F", 1
+	Delay 1474
+	KeyDown "BackSpace", 1
+	Delay 104
+	KeyUp "BackSpace", 1
+
+	Call report_save("FO08-NO SHOW.pdf")
+
+    UnlockMouse
+End Function
+
+
+Function CXL()
+    LockMouse 
+    
+    Call report_open("rescancel")
+
+    //专用 - 操作为：报表相关选项选择
+    MoveTo 584, 329
+    MoveTo 601, 291
+    Delay 577
+    LeftDown 1
+    MoveTo 485, 278
+    Delay 487
+    LeftUp 1
+    Delay 1033
+    KeyDown "BackSpace", 1
+    Delay 109
+    KeyUp "BackSpace", 1
+    Delay 359
+    KeyDown "Num -", 1
+    Delay 93
+    KeyUp "Num -", 1
+    Delay 143
+    KeyDown "Num 1", 1
+    Delay 88
+    KeyUp "Num 1", 1
+    Delay 56
+    KeyDown "Enter", 1
+    Delay 67
+    KeyUp "Enter", 1
+    MoveTo 602, 288
+    Delay 873
+    LeftDown 1
+    MoveTo 448, 292
+    Delay 234
+    LeftUp 1
+    MoveTo 473, 296
+    Delay 48
+    KeyDown "Ctrl", 1
+    MoveTo 534, 302
+    Delay 94
+    KeyDown "C", 1
+    MoveTo 547, 301
+    Delay 62
+    KeyUp "Ctrl", 1
+    MoveTo 549, 301
+    Delay 16
+    KeyUp "C", 1
+    MoveTo 599, 305
+    Delay 889
+    LeftDown 1
+    MoveTo 518, 324
+    Delay 437
+    LeftUp 1
+    MoveTo 586, 309
+    Delay 312
+    LeftDown 1
+    MoveTo 413, 321
+    Delay 266
+    LeftUp 1
+    MoveTo 439, 325
+    Delay 66
+    KeyDown "Ctrl", 1
+    MoveTo 606, 344
+    Delay 78
+    KeyDown "V", 1
+    MoveTo 633, 340
+    Delay 47
+    KeyUp "V", 1
+    MoveTo 655, 334
+    Delay 31
+    KeyUp "Ctrl", 1
+    MoveTo 687, 317
+    Delay 562
+    LeftClick 1
+    MoveTo 695, 323
+    Delay 515
+    KeyDown "Alt", 1
+    Delay 515
+    Delay 31
+    KeyDown "Alt", 1
+    Delay 16
+    KeyDown "F", 1
+    Delay 78
+    KeyUp "Alt", 1
+    Delay 31
+    KeyUp "F", 1
+    Delay 1201
+    KeyDown "BackSpace", 1
+    Delay 109
+    KeyUp "BackSpace", 1
+
+	Call report_save("CXL.pdf")
+
+    UnlockMouse
+End Function
+
+Function FO13LUNCH()
+    //待补充
+End Function
