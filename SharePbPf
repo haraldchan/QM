@@ -1,0 +1,382 @@
+[General]
+SyntaxVersion=2
+BeginHotkey=120
+BeginHotkeyMod=0
+PauseHotkey=0
+PauseHotkeyMod=0
+StopHotkey=123
+StopHotkeyMod=0
+RunOnce=1
+EnableWindow=
+MacroID=ae75882d-e7c4-4ae5-96bd-9c992e334e2e
+Description=Q - SharePbPf
+Enable=1
+AutoRun=0
+[Repeat]
+Type=0
+Number=1
+[SetupUI]
+Type=2
+QUI=
+[Relative]
+SetupOCXFile=
+[Comment]
+
+[Script]
+Dim Combined
+//获取当前窗口句柄，并设置输入法为英文，窗口最大化。
+hwnd = Plugin.Window.Find("SunAwtFrame",0)
+Call Plugin.SysEx.SetInputMethod(hwnd, "中文（简体） - 美式键盘")
+Call Plugin.Window.Max(hwnd)
+
+Function share()
+	LockMouse
+	 '==========以下是按键精灵录制的内容==========
+    MoveTo 585, 491
+    Delay 283
+    KeyDown "Alt", 1
+    Delay 4
+    KeyDown "LeftAlt", 1
+    Delay 212
+    KeyDown "T", 1
+    Delay 64
+    KeyUp "T", 1
+    Delay 153
+    KeyDown "S", 1
+    Delay 104
+    KeyUp "S", 1
+    Delay 46
+    KeyDown "M", 1
+    Delay 64
+    KeyUp "M", 1
+    Delay 121
+    KeyUp "LeftAlt", 1
+    Delay 1
+    KeyUp "Alt", 1
+    Delay 23
+    KeyDown "Tab", 1
+    Delay 136
+    KeyUp "Tab", 1
+    Delay 47
+    KeyDown "Space", 1
+    Delay 73
+    KeyUp "Space", 1
+    Delay 1162
+    KeyDown "1", 1
+    Delay 78
+    KeyUp "1", 1
+    MoveTo 477, 404
+    Delay 450
+    LeftDown 1
+    MoveTo 550, 401
+    Delay 168
+    LeftUp 1
+    MoveTo 556, 401
+    Delay 215
+    KeyDown "Num 0", 1
+    Delay 104
+    KeyUp "Num 0", 1
+    Delay 384
+    KeyDown "Tab", 1
+    Delay 80
+    KeyUp "Tab", 1
+    Delay 56
+    KeyDown "Tab", 1
+    Delay 72
+    KeyUp "Tab", 1
+    Delay 392
+    KeyDown "Num 6", 1
+    Delay 95
+    KeyUp "Num 6", 1
+    Delay 241
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 359
+    KeyDown "O", 1
+    Delay 48
+    KeyUp "O", 1
+    Delay 241
+    KeyDown "R", 1
+    Delay 71
+    KeyUp "R", 1
+    Delay 64
+    KeyUp "LeftAlt", 1
+    Delay 1
+    KeyUp "Alt", 1
+    MoveTo 948, 599
+    Delay 3439
+    LeftClick 1
+    Delay 744
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 367
+    KeyDown "S", 1
+    Delay 168
+    KeyUp "S", 1
+    MoveTo 948, 598
+    Delay 55
+    KeyUp "LeftAlt", 1
+    Delay 2
+    KeyUp "Alt", 1
+    MoveTo 864, 583
+    Delay 463
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 166
+    KeyDown "D", 1
+    Delay 113
+    KeyUp "D", 1
+    Delay 7
+    KeyUp "LeftAlt", 1
+    Delay 1
+    KeyUp "Alt", 1
+    MoveTo 627, 536
+    Delay 888
+    LeftClick 1
+    Delay 423
+    KeyDown "LeftAlt", 1
+    Delay 2
+    KeyDown "Alt", 1
+    Delay 69
+    KeyDown "C", 1
+    Delay 56
+    KeyUp "LeftAlt", 1
+    Delay 2
+    KeyUp "Alt", 1
+    Delay 22
+    KeyUp "C", 1
+    MoveTo 321, 497
+    Delay 1042
+    LeftDown 1
+    MoveTo 322, 506
+    Delay 448
+    LeftUp 1
+    MoveTo 334, 506
+    Delay 215
+    LeftDown 1
+    MoveTo 221, 519
+    Delay 328
+    LeftUp 1
+    Delay 495
+
+    SayString "NRR"
+
+    Delay 112
+    KeyDown "LeftAlt", 1
+    Delay 2
+    KeyDown "Alt", 1
+    Delay 54
+    KeyDown "O", 1
+    Delay 56
+    KeyUp "O", 1
+    Delay 80
+    KeyUp "LeftAlt", 1
+    Delay 1
+    KeyUp "Alt", 1
+    MoveTo 682, 539
+    Delay 1191
+    LeftClick 1
+    Delay 400
+    LeftClick 1
+    MoveTo 648, 540
+    Delay 640
+    LeftClick 1
+    Delay 3000
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 497
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 32
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 33
+    KeyDown "LeftAlt", 1
+    KeyDown "Alt", 1
+    Delay 26
+    KeyDown "I", 1
+    Delay 65
+    KeyUp "I", 1
+    Delay 103
+    KeyUp "LeftAlt", 1
+    KeyUp "Alt", 1
+    MoveTo 679, 535
+    Delay 300
+    LeftClick 1
+    Delay 300
+    KeyDown "Space", 1
+    Delay 73
+    KeyUp "Space", 1
+    Delay 300
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 471
+    KeyDown "O", 1
+    Delay 64
+    KeyUp "O", 1
+    Delay 80
+    KeyUp "LeftAlt", 1
+    Delay 2
+    KeyUp "Alt", 1
+    Delay 300
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 47
+    KeyDown "C", 1
+    Delay 64
+    KeyUp "LeftAlt", 1
+    Delay 1
+    KeyUp "Alt", 1
+    Delay 7
+    KeyUp "C", 1
+    '==========以上是按键精灵录制的内容==========
+	UnlockMouse
+End Function
+
+Function pbpf()
+	LockMouse
+    '==========以下是按键精灵录制的内容==========
+    MoveTo 316, 699
+    Delay 426
+    KeyDown "Alt", 1
+    Delay 4
+    KeyDown "LeftAlt", 1
+    Delay 156
+    KeyDown "E", 1
+    Delay 86
+    KeyUp "E", 1
+    Delay 26
+    KeyUp "LeftAlt", 1
+    Delay 1
+    KeyUp "Alt", 1
+    Delay 263
+    KeyDown "LeftCtrl", 1
+    Delay 3
+    KeyDown "Ctrl", 1
+    Delay 125
+    KeyDown "V", 1
+    Delay 79
+    KeyUp "LeftCtrl", 1
+    Delay 1
+    KeyUp "Ctrl", 1
+    Delay 7
+    KeyUp "V", 1
+    Delay 135
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 300
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 33
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 2
+    KeyDown "O", 1
+    Delay 71
+    KeyUp "O", 1
+    Delay 241
+    KeyDown "C", 1
+    Delay 72
+    KeyUp "LeftAlt", 1
+    Delay 1
+    KeyUp "Alt", 1
+    Delay 7
+    KeyUp "C", 1
+    MoveTo 964, 651
+    Delay 300
+    LeftClick 1
+    MoveTo 759, 266
+    //↑Alert坐标，ARR和INH都重叠
+    Delay 300
+    LeftClick 1
+    MoveTo 757, 279
+    Delay 300
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 383
+    KeyDown "N", 1
+    Delay 112
+    KeyUp "N", 1
+    Delay 87
+    KeyUp "LeftAlt", 1
+    Delay 1
+    KeyUp "Alt", 1
+    Delay 72
+    
+    SayString "OTH"
+ 
+	MoveTo 517, 399
+	Delay 100
+	LeftClick 1
+	MoveTo 479, 435
+	Delay 100
+	LeftClick 1
+    MoveTo 689, 467
+    Delay 100
+    LeftDown 1
+    MoveTo 697, 467
+    Delay 109
+    LeftUp 1
+    Delay 71
+    KeyDown "LeftCtrl", 1
+    Delay 1
+    KeyDown "Ctrl", 1
+    Delay 80
+    KeyDown "V", 1
+    Delay 72
+    KeyUp "V", 1
+    Delay 7
+    KeyUp "LeftCtrl", 1
+    Delay 1
+    KeyUp "Ctrl", 1
+    Delay 137
+    KeyDown "LeftAlt", 1
+    Delay 1
+    KeyDown "Alt", 1
+    Delay 497
+    KeyDown "LeftAlt", 1
+    Delay 2
+    KeyDown "Alt", 1
+    Delay 10
+    KeyDown "O", 1
+    Delay 57
+    KeyUp "O", 1
+    Delay 313
+    KeyDown "C", 1
+    Delay 55
+    KeyUp "C", 1
+    Delay 500
+    KeyDown "C", 1
+    Delay 64
+    KeyUp "C", 1
+    Delay 120
+    KeyUp "LeftAlt", 1
+    Delay 1
+    '==========以上是按键精灵录制的内容==========
+    UnlockMouse
+End Function
+
+MoveTo 590,590
+Combined = MsgBox("是(Y) = InHouse Share" &vbCR& "否(N) = 粘贴P/B P/F信息" &vbCR& "取消 = 退出脚本" &vbCR&vbCR& "INH Share：请在InHouse界面，窗口最大化情况下启动)" &vbcr& "粘贴P/B P/F：请在InHouse点开Comment窗口后启动", vbYesNoCancel + vbSystemModal, "Q.INH Share & P/B P/F")
+
+//以下为Share
+If Combined = vbYes Then  
+   	Call share()
+
+//以下为粘贴PBPF信息
+ElseIf Combined = vbNo Then
+	Call pbpf()
+
+End If
