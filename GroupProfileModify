@@ -1,0 +1,135 @@
+[General]
+SyntaxVersion=2
+BeginHotkey=115
+BeginHotkeyMod=0
+PauseHotkey=0
+PauseHotkeyMod=0
+StopHotkey=123
+StopHotkeyMod=0
+RunOnce=1
+EnableWindow=
+MacroID=6361308f-4619-4605-812f-54af46fa2ed2
+Description=GPM - Group Profile Modify
+Enable=0
+AutoRun=0
+[Repeat]
+Type=0
+Number=1
+[SetupUI]
+Type=2
+QUI=
+[Relative]
+SetupOCXFile=
+[Comment]
+
+[Script]
+//前置准备：
+//1、cancel单住房间的Share
+//2、Group Rooming List的房号Copy到GroupRoomNum.xls(必须本地文件)；
+//3、确保已经打开齿轮
+
+Dim GPM
+Set WshNetwork = CreateObject("WScript.Network")
+hwnd = Plugin.Window.Find("SunAwtFrame",0)
+Call Plugin.SysEx.SetInputMethod(hwnd, "中文（简体） - 美式键盘")
+Call Plugin.Window.Max(hwnd)
+Call Plugin.Window.Top(hwnd)
+
+LockMouse 
+MoveTo 590, 590
+
+GPM = MsgBox("是否要进行Modify团Profile？" &vbCR&vbCR& "注意事项：" &vbCR& "1、如有单住的客人，请先取消Share；"  &vbCR&  "2、请在InHouse界面，窗口最大化情况下启动。", vbOKCancel + vbQuestion + vbSystemModal,"GroupProfileModification")
+Delay 300
+UnlockMouse 
+
+If GPM = vbOK Then 
+
+    LockMouse
+    Call Plugin.Office.OpenXls("C:\Users\"&WshNetwork.UserName&"\Desktop\GroupRoomNum.xls")  
+    RoomNum = Plugin.Office.ReadXls(1, 1, 1)
+    row = 1	
+
+    Do While RoomNum <> ""
+        Call Plugin.Sys.SetCLB(RoomNum)
+	
+        //第一段录制：打开Profile，New
+     	//即使录制中操作也不能太快，留有足够Delay
+     	'==========以下是按键精灵录制的内容==========
+MoveTo 598, 573
+Delay 531
+KeyDown "Alt", 1
+Delay 515
+Delay 31
+KeyDown "Alt", 1
+Delay 15
+KeyDown "P", 1
+Delay 141
+KeyUp "P", 1
+Delay 437
+KeyDown "N", 1
+Delay 156
+KeyUp "N", 1
+Delay 483
+KeyUp "Alt", 1
+MoveTo 666, 545
+Delay 1830
+LeftClick 1
+'==========以上是按键精灵录制的内容==========
+
+        RunApp "F:\SQL\ww_ly.exe"
+        Delay 3000
+        KeyPress "Pause/Break",1
+
+'==========以下是按键精灵录制的内容==========
+MoveTo 653, 278
+MoveTo 690, 263
+Delay 1326
+LeftDown 1
+MoveTo 575, 260
+Delay 468
+LeftUp 1
+Delay 203
+KeyDown "Ctrl", 1
+Delay 343
+KeyDown "V", 1
+Delay 156
+KeyUp "V", 1
+Delay 109
+KeyUp "Ctrl", 1
+Delay 1139
+KeyDown "F11", 1
+Delay 234
+KeyUp "F11", 1
+Delay 300
+'==========以上是按键精灵录制的内容==========	
+        KeyPress "Enter",1
+        Delay 7500
+'==========以下是按键精灵录制的内容==========
+MoveTo 626, 319
+Delay 578
+KeyDown "Alt", 1
+Delay 358
+KeyDown "O", 1
+Delay 63
+KeyUp "O", 1
+Delay 951
+KeyDown "O", 1
+Delay 63
+KeyUp "O", 1
+Delay 515
+KeyUp "Alt", 1
+Delay 1809
+KeyDown "Down", 1
+Delay 141
+KeyUp "Down", 1
+'==========以上是按键精灵录制的内容==========
+
+        row = row + 1
+		RoomNum = Plugin.Office.ReadXls(1, row, 1)   
+    Loop
+
+
+End If
+Call Plugin.Office.CloseXls("C:\Users\"&WshNetwork.UserName&"\Desktop\GroupRoomNum.xls")   
+UnlockMouse
+MessageBox "已Modify完成，请再次检查是否正确！"
