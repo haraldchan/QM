@@ -1,0 +1,91 @@
+[General]
+SyntaxVersion=2
+BeginHotkey=120
+BeginHotkeyMod=0
+PauseHotkey=0
+PauseHotkeyMod=0
+StopHotkey=123
+StopHotkeyMod=0
+RunOnce=1
+EnableWindow=
+MacroID=e9958683-8735-4424-9c89-507340e36b7b
+Description=Q.PSB Checkout
+Enable=0
+AutoRun=0
+[Repeat]
+Type=0
+Number=1
+[SetupUI]
+Type=1
+QUI=Form1
+[Relative]
+SetupOCXFile=
+[Comment]
+
+[Script]
+Dim AutoOut
+Set WshNetwork = CreateObject("WScript.Network")
+AutoOut = MsgBox("即将开始自动拍Out脚本" & vbCr&vbCr & "是否执行？", vbYesNo + vbQuestion + vbSystemModal,"Excel序列拍Out")
+If AutoOut = vbYes Then 
+
+LockMouse
+
+Call Plugin.Office.OpenXls("C:\Users\"&WshNetwork.UserName&"\Desktop\check out.XLS")   //下面这句是打开Excel文档工作表   
+RoomNum = Plugin.Office.ReadXls(1, 1, 1)
+row = 1
+
+Do While RoomNum <> 0
+	RoomNum = Plugin.Office.ReadXls(1, row, 1)   
+ 	Call Plugin.Sys.SetCLB(RoomNum)
+'==========以下是按键精灵录制的内容==========
+	MoveTo 318, 206
+	MoveTo 294, 197
+	Delay 1370
+	LeftClick 1
+	Delay 363
+	KeyDown "Ctrl", 1
+	Delay 192
+	KeyDown "V", 1
+	Delay 112
+	KeyUp "V", 1
+	Delay 31
+	KeyUp "Ctrl", 1
+	MoveTo 297, 191
+	Delay 67
+	KeyDown "Ctrl", 1
+	Delay 169
+	KeyDown "F", 1
+	Delay 151
+	KeyUp "F", 1
+	Delay 24
+	KeyUp "Ctrl", 1
+	Delay 489
+	KeyDown "Enter", 1
+	Delay 177
+	KeyUp "Enter", 1
+	Delay 1
+	Delay 2000
+	KeyDown "Enter", 1
+	Delay 197
+	KeyUp "Enter", 1
+	MoveTo 304, 202
+	Delay 2000
+	LeftDown 1
+	MoveTo 182, 207
+	Delay 720
+	LeftUp 1
+	MoveTo 183, 205
+	Delay 603
+	KeyDown "BackSpace", 1
+	Delay 94
+	KeyUp "BackSpace", 1
+'==========以上是按键精灵录制的内容==========
+
+ 	row = row + 1
+Loop
+
+Call Plugin.Office.CloseXls("C:\Users\"&WshNetwork.UserName&"\Desktop\check out.XLS") 
+UnlockMouse
+
+MessageBox "已拍完！"
+End If
