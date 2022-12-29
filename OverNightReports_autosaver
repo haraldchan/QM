@@ -1,6 +1,6 @@
 [General]
 SyntaxVersion=2
-BeginHotkey=121
+BeginHotkey=122
 BeginHotkeyMod=2
 PauseHotkey=0
 PauseHotkeyMod=0
@@ -41,11 +41,10 @@ End Function
 hwnd = Plugin.Window.Find("SunAwtFrame",0)
 Call Plugin.SysEx.SetInputMethod(hwnd, "中文（简体） - 美式键盘")
 Call Plugin.Window.Max(hwnd)
-Call Plugin.Window.Top(hwnd)
+Call Plugin.Window.Active(hwnd,0)
 
 //主弹窗选择器
 MoveTo 590,590
-activator = MsgBox("将启动夜班报表自动保存脚本，点击确定继续", vbOKCancel + vbSystemModal, "0" ,"Over-Night Report Autosave")
 report_selector = InputBox(  _
 	"请输入对应的报表编号（默认为夜审后操作）。" &vbCR&vbCR& _
 	"（报表将保存至 开始菜单-文档）。" &vbCR&vbCR&vbCR& _
@@ -69,8 +68,6 @@ report_selector = InputBox(  _
 	"18 - FO08-No Show" &vbCR& _
 	"19 - Cancellations" &vbCR&vbCR& _
 	"666 - 保存以上所有报表（执行时间约8分钟，期间请勿操作电脑）","OverNight Report Autosave")
-Delay 300
-
 
 //根据输入框输入内容，判断调用哪个函数生成报表
 Select Case report_selector
@@ -188,7 +185,12 @@ Select Case report_selector
 	Delay 300
 	Call open_documents(report)
 	
-	
+	Case "pu"
+	report = "on-day pick up"
+	search_date = inputbox("请输入查询日期：（格式为mmddyyyy）","On-day Pickup")
+	Call Lib.OVERNIGHTREPORTS.ODPick(search_date)
+	Delay 300
+	Call open_documents(report)
 	
 	
 	Case "666"
@@ -217,7 +219,7 @@ Select Case report_selector
 	Delay 10000
 	
 	Call Lib.OVERNIGHTREPORTS.VIPINH()
-	Delay 17000
+	Delay 23000
 
 	Call Lib.OVERNIGHTREPORTS.VIPDEP()
 	Delay 10000
