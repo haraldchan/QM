@@ -4,13 +4,11 @@ MacroID=4c0fbf32-c596-4eee-b8cd-f6d65200215d
 [Comment]
 
 [Script]
-//请在下面写上您的子程序或函数
-//写完保存后，在任一命令库上点击右键并选择“刷新”即可
-//
+
 Function report_open(search_str)
     //通用 - 打开Report界面
     MoveTo 591, 456
-    Delay 300
+    Delay 150
     KeyDown "LeftAlt", 1
     KeyDown "Alt", 1
     Delay 30
@@ -18,12 +16,12 @@ Function report_open(search_str)
     KeyDown "Alt", 1
     Delay 20
     KeyDown "M", 1
-    Delay 100
+    Delay 150
     KeyUp "M", 1
-    Delay 300
+    Delay 150
     KeyUp "LeftAlt", 1
     KeyUp "Alt", 1
-    Delay 300
+    Delay 150
     KeyDown "R", 1
     Delay 90
     KeyUp "R", 1
@@ -36,17 +34,17 @@ Function report_open(search_str)
     //通用 - 操作为：搜索报表，勾选Print to PDF，打开报表选项
     MoveTo 583, 340
     MoveTo 785, 231
-    Delay 200
+    Delay 150
     LeftClick 1
     MoveTo 487, 589
-    Delay 200
+    Delay 150
     LeftClick 1
     MoveTo 605, 333
-    Delay 200
+    Delay 150
     LeftClick 1
     Delay 50
     LeftClick 1
-    Delay 200
+    Delay 150
 End Function
 
 
@@ -56,9 +54,9 @@ Function report_save(savename)
     SayString savename
     Delay 200
 	
-    //通用 - 操作为：保存，等待8秒后关闭reports界面
+    //通用 - 操作为：保存，等待5秒后关闭reports界面
     KeyDown "Enter", 1
-    Delay 100
+    Delay 150
     KeyUp "Enter", 1
 	
     Delay 5000
@@ -86,14 +84,14 @@ Function Comp()
     //专用 - 操作为：报表相关选项选择
     KeyDown "LeftAlt", 1
     KeyDown "Alt", 1
-    Delay 440
+    Delay 150
     KeyDown "F", 1
     Delay 80
     KeyUp "F", 1
     Delay 20
     KeyUp "LeftAlt", 1
     KeyUp "Alt", 1
-    Delay 300
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 83
     KeyUp "BackSpace", 1
@@ -111,30 +109,30 @@ Function NA02()
 
     //专用 - 操作为：报表相关选项选择
     MoveTo 749, 333
-    Delay 540
+    Delay 150
     KeyDown "LeftAlt", 1
     KeyDown "Alt", 1
-    Delay 370
+    Delay 150
     KeyDown "O", 1
     Delay 60
     KeyUp "O", 1
-    Delay 130
+    Delay 150
     KeyUp "LeftAlt", 1
     KeyUp "Alt", 1
     MoveTo 600, 512
-    Delay 1820
+    Delay 150
     LeftClick 1
-    Delay 470
+    Delay 150
     KeyDown "LeftAlt", 1
     KeyDown "Alt", 1
-    Delay 210
+    Delay 150
     KeyDown "F", 1
-    Delay 100
+    Delay 150
     KeyUp "F", 1
-    Delay 200
+    Delay 150
     KeyUp "LeftAlt", 1
     KeyUp "Alt", 1
-    Delay 1000
+    Delay 500
     KeyDown "BackSpace", 1
     Delay 83
     KeyUp "BackSpace", 1
@@ -152,55 +150,55 @@ Function RS05 ()
     
     //专用 - 操作为：报表相关选项选择
     MoveTo 644, 178
-    Delay 480
+    Delay 150
     LeftDown 1
     MoveTo 542, 170
-    Delay 500
+    Delay 150
     LeftUp 1
     MoveTo 527, 151
-    Delay 580
+    Delay 150
     KeyDown "Num -", 1
-    Delay 90
+    Delay 150
     KeyUp "Num -", 1
-    Delay 110
+    Delay 150
     KeyDown "Num 8", 1
-    Delay 70
+    Delay 150
     KeyUp "Num 8", 1
     MoveTo 646, 204
-    Delay 500
+    Delay 150
     LeftDown 1
     MoveTo 533, 219
-    Delay 620
+    Delay 150
     LeftUp 1
     MoveTo 473, 270
-    Delay 600
+    Delay 150
     KeyDown "Num -", 1
-    Delay 90
+    Delay 150
     KeyUp "Num -", 1
-    Delay 120
+    Delay 150
     KeyDown "Num 8", 1
-    Delay 100
+    Delay 150
     KeyUp "Num 8", 1
     MoveTo 617, 641
-    Delay 300
+    Delay 150
     KeyDown "Tab", 1
     MoveTo 615, 662
     Delay 150
     KeyUp "Tab", 1
     MoveTo 610, 689
-    Delay 300
+    Delay 150
     LeftClick 1
-    Delay 470
+    Delay 150
     KeyDown "LeftAlt", 1
     KeyDown "Alt", 1
-    Delay 210
+    Delay 150
     KeyDown "F", 1
-    Delay 100
+    Delay 150
     KeyUp "F", 1
     Delay 200
     KeyUp "LeftAlt", 1
     KeyUp "Alt", 1
-    Delay 1000
+    Delay 500
     KeyDown "BackSpace", 1
     Delay 83
     KeyUp "BackSpace", 1
@@ -240,7 +238,7 @@ End If
 
 //是否跳次年
 If (Month(Date - 1) + 1) = 13 Then 
-	my_year_next = year(Date) + 1
+	my_year_next = year(Date - 1) + 1
 
 End If
 
@@ -268,7 +266,7 @@ TracePrint my_date_last_next
     
     //专用 - 操作为：报表相关选项选择
 	MoveTo 652, 210
-	Delay 300
+	Delay 150
 	KeyDown "BackSpace", 1
 	Delay 55
 	KeyUp "BackSpace", 1
@@ -279,12 +277,12 @@ TracePrint my_date_last_next
    	
 	MoveTo 637, 200
 	MoveTo 645, 205
-	Delay 620
+	Delay 150
 	LeftDown 1
 	MoveTo 531, 204
-	Delay 504
+	Delay 150
 	LeftUp 1
-	Delay 344
+	Delay 150
 	KeyDown "BackSpace", 1
 	Delay 88
 	KeyUp "BackSpace", 1
@@ -292,25 +290,25 @@ TracePrint my_date_last_next
     SayString my_date_last
     
     MoveTo 617, 641
-    Delay 300
+    Delay 150
     KeyDown "Tab", 1
     MoveTo 615, 662
     Delay 150
     KeyUp "Tab", 1
     MoveTo 610, 689
-    Delay 300
+    Delay 150
     LeftClick 1
-    Delay 470
+    Delay 150
     KeyDown "LeftAlt", 1
     KeyDown "Alt", 1
-    Delay 210
+    Delay 150
     KeyDown "F", 1
-    Delay 100
+    Delay 150
     KeyUp "F", 1
-    Delay 200
+    Delay 150
     KeyUp "LeftAlt", 1
     KeyUp "Alt", 1
-    Delay 1000
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 83
     KeyUp "BackSpace", 1
@@ -351,7 +349,7 @@ End If
 
 //是否跳次年
 If (Month(Date - 1) + 1) = 13 Then 
-	my_year_next = year(Date) + 1
+	my_year_next = year(Date - 1) + 1
 Else 
 	my_year_next = my_year
 End If
@@ -391,12 +389,12 @@ TracePrint my_date_last_next
    	
 	MoveTo 637, 200
 	MoveTo 645, 205
-	Delay 620
+	Delay 150
 	LeftDown 1
 	MoveTo 531, 204
-	Delay 504
+	Delay 150
 	LeftUp 1
-	Delay 344
+	Delay 150
 	KeyDown "BackSpace", 1
 	Delay 88
 	KeyUp "BackSpace", 1
@@ -410,19 +408,19 @@ TracePrint my_date_last_next
     Delay 150
     KeyUp "Tab", 1
     MoveTo 610, 689
-    Delay 300
+    Delay 150
     LeftClick 1
-    Delay 470
+    Delay 150
     KeyDown "LeftAlt", 1
     KeyDown "Alt", 1
-    Delay 210
+    Delay 150
     KeyDown "F", 1
-    Delay 100
+    Delay 150
     KeyUp "F", 1
     Delay 200
     KeyUp "LeftAlt", 1
     KeyUp "Alt", 1
-    Delay 1000
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 83
     KeyUp "BackSpace", 1
@@ -442,31 +440,31 @@ Function VIPARR ()
 	//专用 - 操作为：报表相关选项选择
     MoveTo 616, 372
     MoveTo 464, 204
-    Delay 1623
+    Delay 150
     LeftDown 1
     MoveTo 336, 198
-    Delay 882
+    Delay 150
     LeftUp 1
     Delay 1170
     KeyDown "Num +", 1
     Delay 78
     KeyUp "Num +", 1
-    Delay 171
+    Delay 150
     KeyDown "Num 2", 1
     Delay 94
     KeyUp "Num 2", 1
     MoveTo 610, 620
-    Delay 1387
+    Delay 150
     LeftClick 1
     MoveTo 632, 593
-    Delay 577
+    Delay 150
     LeftClick 1
     MoveTo 610, 743
-    Delay 702
+    Delay 150
     LeftClick 1
     Delay 94
     MoveTo 627, 728
-    Delay 546
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 62
     KeyUp "BackSpace", 1
@@ -484,17 +482,17 @@ Function VIPINH ()
 
     //专用 - 操作为：报表相关选项选择
     KeyDown "Alt", 1
-    Delay 312
+    Delay 150
     KeyDown "F", 1
-    Delay 125
+    Delay 150
     KeyUp "Alt", 1
-    Delay 31
+    Delay 150
     KeyUp "F", 1
     Delay300 
     MoveTo 639, 434
-    Delay 468
+    Delay 150
     KeyDown "BackSpace", 1
-    Delay 63
+    Delay 150
     KeyUp "BackSpace", 1
 
 	Call report_save("VIP INH-Guest INH without due out.pdf")
@@ -511,40 +509,40 @@ Function VIPDEP ()
     //专用 - 操作为：报表相关选项选择
     MoveTo 597, 442
     MoveTo 600, 545
-    Delay 1373
+    Delay 150
     LeftClick 1
     MoveTo 632, 387
-    Delay 499
+    Delay 150
     LeftDown 1
     MoveTo 633, 386
-    Delay 94
+    Delay 150
     LeftUp 1
     MoveTo 864, 385
-    Delay 967
+    Delay 150
     LeftDown 1
     MoveTo 862, 385
-    Delay 109
+    Delay 150
     LeftUp 1
     MoveTo 822, 454
-    Delay 296
+    Delay 150
     KeyDown "Alt", 1
     MoveTo 798, 491
-    Delay 250
+    Delay 150
     KeyDown "A", 1
     MoveTo 795, 507
-    Delay 109
+    Delay 150
     KeyUp "Alt", 1
     Delay 16
     KeyUp "A", 1
     MoveTo 850, 578
-    Delay 530
+    Delay 150
     LeftClick 1
     MoveTo 635, 681
-    Delay 1076
+    Delay 150
     LeftClick 1
-    Delay 300
+    Delay 150
     KeyDown "BackSpace", 1
-    Delay 63
+    Delay 150
     KeyUp "BackSpace", 1
 
 	Call report_save("FO03-VIP DEP.pdf")
@@ -567,33 +565,33 @@ Function FO01 ()
     //专用 - 操作为：报表相关选项选择
     MoveTo 591, 353
     MoveTo 309, 566
-    Delay 1326
+    Delay 150
     LeftClick 1
     MoveTo 317, 619
-    Delay 577
+    Delay 150
     LeftDown 1
     MoveTo 317, 620
-    Delay 93
+    Delay 150
     LeftUp 1
     MoveTo 325, 663
-    Delay 609
+    Delay 150
     LeftClick 1
     MoveTo 599, 594
-    Delay 655
+    Delay 150
     LeftClick 1
     MoveTo 608, 618
-    Delay 405
+    Delay 150
     LeftDown 1
     MoveTo 609, 618
-    Delay 141
+    Delay 150
     LeftUp 1
     MoveTo 617, 739
-    Delay 764
+    Delay 150
     LeftDown 1
     MoveTo 618, 739
     Delay 94
     LeftUp 1
-    Delay 1685
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 78
     KeyUp "BackSpace", 1
@@ -612,12 +610,12 @@ Function FO02 ()
     //专用 - 操作为：报表相关选项选择
     MoveTo 574, 408
     MoveTo 433, 523
-    Delay 1341
+    Delay 150
     LeftClick 1
     MoveTo 625, 713
-    Delay 826
+    Delay 150
     LeftClick 1
-    Delay 1669
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 78
     KeyUp "BackSpace", 1
@@ -636,18 +634,18 @@ Function FO03 ()
     //专用 - 操作为：报表相关选项选择
     MoveTo 613, 513
     MoveTo 607, 540
-    Delay 1076
+    Delay 150
     LeftDown 1
     MoveTo 608, 541
-    Delay 156
+    Delay 150
     LeftUp 1
     MoveTo 488, 490
-    Delay 484
+    Delay 150
     LeftClick 1
     MoveTo 613, 680
-    Delay 858
+    Delay 150
     LeftClick 1
-    Delay 1419
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 94
     KeyUp "BackSpace", 1
@@ -666,20 +664,20 @@ Function FO11 ()
     //专用 - 操作为：报表相关选项选择
     MoveTo 727, 502
     MoveTo 686, 474
-    Delay 982
+    Delay 150
     LeftDown 1
     MoveTo 669, 474
-    Delay 110
+    Delay 150
     LeftUp 1
     MoveTo 409, 522
-    Delay 670
+    Delay 150
     LeftClick 1
     MoveTo 626, 682
-    Delay 717
+    Delay 150
     LeftClick 1
-    Delay 1264
+    Delay 150
     KeyDown "BackSpace", 1
-    Delay 93
+    Delay 150
     KeyUp "BackSpace", 1
 	
 	Call report_save("FO11-CREDIT LIMIT.pdf")
@@ -696,29 +694,29 @@ Function FO13BF ()
     //专用 - 操作为：报表相关选项选择
     MoveTo 623, 508
     MoveTo 599, 276
-    Delay 1154
+    Delay 150
     LeftDown 1
     MoveTo 519, 279
-    Delay 389
+    Delay 150
     LeftUp 1
-    Delay 406
+    Delay 150
     KeyDown "Num -", 1
     MoveTo 560, 279
-    Delay 140
+    Delay 150
     KeyUp "Num -", 1
-    Delay 187
+    Delay 150
     KeyDown "Num 1", 1
-    Delay 141
+    Delay 150
     KeyUp "Num 1", 1
-    Delay 31
+    Delay 150
     KeyDown "Enter", 1
-    Delay 78
+    Delay 150
     KeyUp "Enter", 1
     MoveTo 609, 269
-    Delay 686
+    Delay 150
     LeftDown 1
     MoveTo 470, 283
-    Delay 375
+    Delay 150
     LeftUp 1
     Delay 3
     KeyDown "Ctrl", 1
@@ -732,16 +730,16 @@ Function FO13BF ()
     Delay 16
     KeyUp "C", 1
     MoveTo 605, 303
-    Delay 281
+    Delay 150
     LeftDown 1
     MoveTo 496, 306
-    Delay 283
+    Delay 150
     LeftUp 1
     MoveTo 494, 307
     Delay 34
     KeyDown "Ctrl", 1
     MoveTo 496, 317
-    Delay 109
+    Delay 150
     KeyDown "V", 1
     MoveTo 514, 361
     Delay 78
@@ -750,17 +748,17 @@ Function FO13BF ()
     Delay 16
     KeyUp "Ctrl", 1
     MoveTo 463, 518
-    Delay 780
+    Delay 150
     LeftClick 1
-    Delay 406
+    Delay 150
     KeyDown "Alt", 1
-    Delay 296
+    Delay 150
     KeyDown "F", 1
     Delay 94
     KeyUp "Alt", 1
     Delay 16
     KeyUp "F", 1
-    Delay 1435
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 78
     KeyUp "BackSpace", 1
@@ -779,17 +777,17 @@ Function Rooms ()
     //专用 - 操作为：报表相关选项选择
     MoveTo 558, 483
     MoveTo 476, 515
-    Delay 1030
+    Delay 150
     LeftClick 1
-    Delay 437
+    Delay 150
     KeyDown "Alt", 1
-    Delay 249
+    Delay 150
     KeyDown "F", 1
     Delay 63
     KeyUp "Alt", 1
     Delay 15
     KeyUp "F", 1
-    Delay 1248
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 78
     KeyUp "BackSpace", 1
@@ -807,7 +805,7 @@ Function HK03 ()
 
     //专用 - 操作为：报表相关选项选择
     MoveTo 487, 488
-    Delay 296
+    Delay 150
     KeyDown "Alt", 1
     Delay 78
     KeyDown "F", 1
@@ -815,7 +813,7 @@ Function HK03 ()
     KeyUp "Alt", 1
     Delay 16
     KeyUp "F", 1
-    Delay 1170
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 78
     KeyUp "BackSpace", 1
@@ -834,23 +832,23 @@ Function GroupRoom ()
     //专用 - 操作为：报表相关选项选择
     MoveTo 453, 546
     MoveTo 372, 544
-    Delay 858
+    Delay 150
     LeftClick 1
     MoveTo 520, 466
-    Delay 624
+    Delay 150
     LeftClick 1
     MoveTo 532, 549
-    Delay 562
+    Delay 150
     LeftClick 1
-    Delay 468
+    Delay 150
     KeyDown "Alt", 1
-    Delay 468
+    Delay 150
     KeyDown "F", 1
     Delay 93
     KeyUp "F", 1
     Delay 63
     KeyUp "Alt", 1
-    Delay 1404
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 78
     KeyUp "BackSpace", 1
@@ -869,19 +867,19 @@ Function GroupIn ()
     //专用 - 操作为：报表相关选项选择
     MoveTo 632, 450
     MoveTo 470, 425
-    Delay 858
+    Delay 150
     LeftClick 1
     MoveTo 625, 493
-    Delay 562
+    Delay 150
     LeftClick 1
-    Delay 249
+    Delay 150
     KeyDown "Alt", 1
-    Delay 312
+    Delay 150
     KeyDown "F", 1
-    Delay 109
+    Delay 150
     KeyUp "Alt", 1
     KeyUp "F", 1
-    Delay 1514
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 78
     KeyUp "BackSpace", 1
@@ -900,23 +898,23 @@ Function NoShow ()
     //专用 - 操作为：报表相关选项选择
 
 	MoveTo 573, 440
-	Delay 918
+	Delay 150
 	KeyDown "BackSpace", 1
 	Delay 64
 	KeyUp "BackSpace", 1
-	Delay 265
+	Delay 150
 	KeyDown "Num -", 1
-	Delay 127
+	Delay 150
 	KeyUp "Num -", 1
 	Delay 72
 	KeyDown "Num 1", 1
-	Delay 112
+	Delay 150
 	KeyUp "Num 1", 1
 	Delay 55
 	KeyDown "Tab", 1
 	Delay 81
 	KeyUp "Tab", 1
-	Delay 367
+	Delay 150
 	KeyDown "Num -", 1
 	Delay 96
 	KeyUp "Num -", 1
@@ -924,15 +922,15 @@ Function NoShow ()
 	KeyDown "Num 1", 1
 	Delay 97
 	KeyUp "Num 1", 1
-	Delay 224
+	Delay 150
 	KeyDown "Alt", 1
 	Delay 150
 	KeyDown "F", 1
-	Delay 137
+	Delay 150
 	KeyUp "Alt", 1
 	Delay 7
 	KeyUp "F", 1
-	Delay 1474
+	Delay 150
 	KeyDown "BackSpace", 1
 	Delay 104
 	KeyUp "BackSpace", 1
@@ -951,20 +949,20 @@ Function CXL()
     //专用 - 操作为：报表相关选项选择
     MoveTo 584, 329
     MoveTo 601, 291
-    Delay 577
+    Delay 150
     LeftDown 1
     MoveTo 485, 278
-    Delay 487
+    Delay 150
     LeftUp 1
-    Delay 1033
+    Delay 150
     KeyDown "BackSpace", 1
-    Delay 109
+    Delay 150
     KeyUp "BackSpace", 1
-    Delay 359
+    Delay 150
     KeyDown "Num -", 1
-    Delay 93
+    Delay 150
     KeyUp "Num -", 1
-    Delay 143
+    Delay 150
     KeyDown "Num 1", 1
     Delay 88
     KeyUp "Num 1", 1
@@ -973,10 +971,10 @@ Function CXL()
     Delay 67
     KeyUp "Enter", 1
     MoveTo 602, 288
-    Delay 873
+    Delay 150
     LeftDown 1
     MoveTo 448, 292
-    Delay 234
+    Delay 150
     LeftUp 1
     MoveTo 473, 296
     Delay 48
@@ -991,16 +989,16 @@ Function CXL()
     Delay 16
     KeyUp "C", 1
     MoveTo 599, 305
-    Delay 889
+    Delay 150
     LeftDown 1
     MoveTo 518, 324
-    Delay 437
+    Delay 150
     LeftUp 1
     MoveTo 586, 309
-    Delay 312
+    Delay 150
     LeftDown 1
     MoveTo 413, 321
-    Delay 266
+    Delay 150
     LeftUp 1
     MoveTo 439, 325
     Delay 66
@@ -1015,12 +1013,12 @@ Function CXL()
     Delay 31
     KeyUp "Ctrl", 1
     MoveTo 687, 317
-    Delay 562
+    Delay 150
     LeftClick 1
     MoveTo 695, 323
-    Delay 515
+    Delay 150
     KeyDown "Alt", 1
-    Delay 515
+    Delay 150
     Delay 31
     KeyDown "Alt", 1
     Delay 16
@@ -1029,7 +1027,7 @@ Function CXL()
     KeyUp "Alt", 1
     Delay 31
     KeyUp "F", 1
-    Delay 1201
+    Delay 150
     KeyDown "BackSpace", 1
     Delay 109
     KeyUp "BackSpace", 1
@@ -1039,6 +1037,161 @@ Function CXL()
     UnlockMouse
 End Function
 
-Function FO13LUNCH()
-    //待补充
+
+Function ODPick(mydate)
+
+	Call report_open("resenteredon")
+		
+	MoveTo 611, 340
+	Delay 150
+	LeftDown 1
+	MoveTo 489, 336
+	Delay 150
+	LeftUp 1
+	Delay 150
+	SayString mydate
+	Delay 150
+	
+	MoveTo 619, 355
+	Delay 150
+	LeftDown 1
+	MoveTo 490, 358
+	Delay 150
+	LeftUp 1
+	Delay 150
+	SayString mydate
+	Delay 150
+	
+	MoveTo 611, 403
+	Delay 150
+	LeftDown 1
+	MoveTo 467, 411
+	Delay 150
+	LeftUp 1
+	Delay 150
+	SayString mydate
+	Delay 150
+	
+	
+	MoveTo 618, 428
+	Delay 150
+	LeftDown 1
+	MoveTo 458, 429
+	Delay 150
+	LeftUp 1
+	Delay 150
+	SayString mydate
+	Delay 150
+	
+	MoveTo 533, 397
+	MoveTo 609, 360
+	Delay 150
+	LeftDown 1
+	MoveTo 445, 360
+	Delay 150
+	LeftUp 1
+	MoveTo 455, 363
+	Delay 150
+	KeyDown "Num +", 1
+	Delay 150
+	KeyUp "Num +", 1
+	Delay 150
+	KeyDown "Num 3", 1
+	MoveTo 456, 364
+	Delay 150
+	KeyUp "Num 3", 1
+	Delay 150
+	KeyDown "Num 0", 1
+	Delay 150
+	KeyUp "Num 0", 1
+	MoveTo 457, 365
+	Delay 150
+	KeyDown "Enter", 1
+	Delay 150
+	KeyUp "Enter", 1
+	
+	MoveTo 713, 472
+	Delay 150
+	LeftClick 1
+	Delay 150
+	LeftDown 1
+	MoveTo 254, 447
+	Delay 150
+	LeftUp 1
+	
+	MoveTo 261, 447
+	Delay 150
+	LeftDown 1
+	MoveTo 261, 447
+	Delay 150
+	LeftUp 1
+	
+	MoveTo 259, 466
+	Delay 150
+	LeftDown 1
+	MoveTo 259, 467
+	Delay 150
+	LeftUp 1
+	MoveTo 259, 488
+	Delay 150
+	LeftDown 1
+	MoveTo 259, 491
+	Delay 150
+	LeftUp 1
+	MoveTo 257, 511
+	Delay 150
+	LeftDown 1
+	MoveTo 257, 512
+	Delay 150
+	LeftUp 1
+	MoveTo 256, 588
+	Delay 150
+	LeftDown 1
+	MoveTo 256, 589
+	Delay 150
+	LeftUp 1
+	MoveTo 256, 590
+	Delay 150
+	KeyDown "RightAlt", 1
+	KeyDown "Alt", 1
+	Delay 40
+	KeyDown "O", 1
+	Delay 60
+	KeyUp "RightAlt", 1
+	Delay 10
+	KeyUp "Alt", 1
+	Delay 10
+	KeyUp "O", 1
+	MoveTo 701, 563
+	Delay 150
+	LeftClick 1
+	MoveTo 475, 370
+	Delay 150
+	LeftClick 1
+	Delay 150
+	LeftClick 1
+	Delay 150
+	LeftClick 1
+	MoveTo 551, 563
+	Delay 150
+	LeftClick 1
+	MoveTo 586, 580
+	Delay 150
+	KeyDown "LeftAlt", 1
+	KeyDown "Alt", 1
+	Delay 150
+	KeyDown "F", 1
+	Delay 150
+	KeyUp "F", 1
+	Delay 150
+	KeyUp "LeftAlt", 1
+	KeyUp "Alt", 1
+	MoveTo 586, 579
+	Delay 150
+	KeyDown "BackSpace", 1
+	Delay 80
+	KeyUp "BackSpace", 1
+	
+	Call report_save(mydate & " on-day pickup.pdf")
 End Function
+
