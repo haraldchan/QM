@@ -7,6 +7,8 @@ MacroID=4c0fbf32-c596-4eee-b8cd-f6d65200215d
 
 Function report_open(search_str)
     //通用 - 打开Report界面
+    hwnd = Plugin.Window.Find("", 0)
+	Call Plugin.SysEx.SetInputMethod(hwnd, "中文（简体） - 美式键盘")
     MoveTo 591, 456
     Delay 150
     KeyDown "LeftAlt", 1
@@ -50,7 +52,7 @@ End Function
 
 Function report_save(savename)
     //SayString 处输入需要保存的文件名
-    Delay 500
+    Delay 1200
     SayString savename
     Delay 200
 	
@@ -1092,18 +1094,9 @@ Function ODPick(mydate)
 	LeftUp 1
 	MoveTo 455, 363
 	Delay 150
-	KeyDown "Num +", 1
-	Delay 150
-	KeyUp "Num +", 1
-	Delay 150
-	KeyDown "Num 3", 1
-	MoveTo 456, 364
-	Delay 150
-	KeyUp "Num 3", 1
-	Delay 150
-	KeyDown "Num 0", 1
-	Delay 150
-	KeyUp "Num 0", 1
+	
+	SayString "+30"
+	
 	MoveTo 457, 365
 	Delay 150
 	KeyDown "Enter", 1
@@ -1193,5 +1186,160 @@ Function ODPick(mydate)
 	KeyUp "BackSpace", 1
 	
 	Call report_save(mydate & " on-day pickup.pdf")
+End Function
+
+
+Function GroupArr(blockcode_input, save_name)
+	LockMouse 
+	
+	Call report_open("grprmlist")
+
+    //专用 - 操作为：报表相关选项选择
+	MoveTo 845, 376
+	Delay 150
+	LeftClick 1
+	MoveTo 804, 386
+	Delay 150
+	KeyDown "Alt", 1
+	MoveTo 644, 458
+	Delay 150
+	KeyDown "A", 1
+	MoveTo 623, 481
+	Delay 110
+	KeyUp "A", 1
+	MoveTo 622, 482
+	Delay 20
+	KeyUp "Alt", 1
+	MoveTo 808, 605
+	Delay 150
+	LeftDown 1
+	MoveTo 805, 614
+	Delay 150
+	LeftUp 1
+	MoveTo 737, 615
+	Delay 150
+	LeftClick 1
+	Delay 150
+	KeyDown "Space", 1
+	Delay 101
+	KeyUp "Space", 1
+	Delay 30
+	KeyDown "Up", 1
+	Delay 110
+	KeyDown "Space", 1
+	Delay 30
+	KeyUp "Up", 1
+	Delay 30
+	KeyUp "Space", 1
+	Delay 50
+	KeyDown "Up", 1
+	Delay 60
+	KeyDown "Space", 1
+	Delay 40
+	KeyUp "Up", 1
+	Delay 20
+	KeyUp "Space", 1
+	Delay 90
+	KeyDown "Up", 1
+	Delay 30
+	KeyDown "Space", 1
+	Delay 80
+	KeyUp "Up", 1
+	Delay 10
+	KeyUp "Space", 1
+	Delay 111
+	KeyDown "Up", 1
+	Delay 30
+	KeyDown "Space", 1
+	Delay 70
+	KeyUp "Up", 1
+	Delay 30
+	KeyUp "Space", 1
+	Delay 110
+	KeyDown "Up", 1
+	Delay 60
+	KeyDown "Space", 1
+	Delay 40
+	KeyUp "Up", 1
+	Delay 50
+	KeyUp "Space", 1
+	Delay 110
+	KeyDown "Up", 1
+	Delay 70
+	KeyDown "Space", 1
+	Delay 40
+	KeyUp "Up", 1
+	Delay 70
+	KeyUp "Space", 1
+	Delay 130
+	KeyDown "Up", 1
+	Delay 120
+	KeyUp "Up", 1
+	Delay 80
+	KeyDown "Space", 1
+	Delay 130
+	KeyUp "Space", 1
+	Delay 380
+	KeyDown "Alt", 1
+	Delay 540
+	Delay 30
+	KeyDown "Alt", 1
+	Delay 20
+	KeyDown "O", 1
+	Delay 60
+	KeyUp "O", 1
+	Delay 150
+	KeyUp "Alt", 1
+    
+	MoveTo 842, 324
+	Delay 150
+	LeftClick 1
+	MoveTo 569, 283
+	Delay 150
+	LeftClick 1
+	Delay 150
+	
+	SayString blockcode_input
+	Delay 150
+
+	MoveTo 848, 281
+	Delay 150
+	LeftClick 1
+	MoveTo 603, 412
+	Delay 150
+	LeftClick 1
+	Delay 150
+	KeyDown "Space", 1
+	MoveTo 669, 437
+	Delay 150
+	KeyUp "Space", 1
+	MoveTo 728, 473
+	Delay 150
+	KeyDown "Alt", 1
+	KeyDown "O", 1
+	KeyUp "O", 1
+	Delay 150
+	KeyUp "Alt", 1
+	KeyDown "Alt", 1
+	KeyDown "O", 1
+	KeyUp "O", 1
+	Delay 150
+	KeyUp "Alt", 1
+	MoveTo 711, 491
+	Delay 150
+	LeftClick 1
+	MoveTo 422, 520
+	Delay 150
+	LeftClick 1
+	MoveTo 609, 647
+	Delay 150
+	LeftClick 1
+	Delay 150
+	KeyDown "BackSpace", 1
+	Delay 40
+	KeyUp "BackSpace", 1
+	Delay 150
+    
+    Call report_save(save_name &".pdf")
 End Function
 
