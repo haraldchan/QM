@@ -1,0 +1,437 @@
+[General]
+SyntaxVersion=2
+BeginHotkey=122
+BeginHotkeyMod=2
+PauseHotkey=0
+PauseHotkeyMod=0
+StopHotkey=123
+StopHotkeyMod=0
+RunOnce=1
+EnableWindow=
+MacroID=648d25da-d38e-4db1-8619-09c68c6c3784
+Description=Q - ReportMaster
+Enable=1
+AutoRun=0
+[Repeat]
+Type=0
+Number=1
+[SetupUI]
+Type=2
+QUI=
+[Relative]
+SetupOCXFile=
+[Comment]
+
+[Script]
+	Dim my_year, my_month, my_day
+Dim blockcode_read, block_name, blockcode_received, block_name_received, count, row, file_name
+Dim info_conf
+Dim breaker
+	
+
+//获取当前系统用户名（用于确定“我的文档”路径）
+Set WshNetwork = CreateObject("WScript.Network")
+//MessageBox "你的域名是: " & WshNetwork.UserDomain
+//MessageBox "你的计算机系统名称是:" & WshNetwork.ComputerName
+//MessageBox "你是:" & WshNetwork.UserName
+
+
+//保存文件后提示弹窗打开我的文档
+Function open_documents(filename)
+	open_folder = MsgBox ("已保存报表: "& filename &vbCR&vbCR&"是否打开保存所在文件夹？",vbOKCancel+vbSystemModal,"OverNight Reports Autosaver")
+
+	If open_folder = vbOK Then 
+		RunApp "C:\Users\"&WshNetwork.UserName&"\Documents"
+	End If
+End Function
+
+//从On day group details excel表中读取Blockcode。
+Function blockcode_reader()
+		Do While row < 11
+			blockcode_received = Plugin.Office.ReadXls(1, row, 1)
+			If blockcode_received = "GROUP STAYOVER" Then 
+				Exit Do  
+			ElseIf blockcode_received = "" Then
+				Exit Do
+			End If
+			
+			blockcode_read(count) = blockcode_received
+    		count = count + 1
+    		row = row + 1
+		Loop
+End Function
+
+//从On day group details excel表中读取block名。
+Function block_name_reader()
+		Do While row < 11
+			
+			block_name_received = Plugin.Office.ReadXls(1, row, 2)
+			If block_name_received = "GROUP STAYOVER" Then 
+				Exit Do  
+			ElseIf block_name_received = "" Then
+				Exit Do
+			End If
+			
+			block_name(count) = block_name_received
+    		count = count + 1
+    		row = row + 1
+		Loop
+End Function
+
+//手动录入blockcode保存团单，保存文件名为blockcode
+Function GroupArr()
+		Dim i, arr, blockcode, countW
+		arr = Array("xx", "xx", "xx", "xx", "xx", "xx", "xx", "xx", "xx", "xx")
+		blockcode = ""
+		countW = 0
+
+		//弹窗输入blockcode，录入数组
+		Do While blockcode <> "xx"
+			blockcode = InputBox("请属于blockcode，取消或ESC结束", "Group Rooming List Saver")
+			If blockcode = "" Then 
+    		Exit Do
+    		Else
+    		arr(countW) = blockcode
+			countW = countW + 1
+			End If
+		Loop
+		
+		//遍历数组（除去xx），将数组元素（blockcode）作为参数传入报表保存函数
+		For Each i In arr
+ 			If i = "xx" Then 
+ 				Exit For
+ 			End If
+			Call Plugin.Msg.Tips("正在保存团单："& i &".pdf")
+			Call Lib.OVERNIGHTREPORTS.GroupArr(i,i)
+			Delay 10000
+			breaker = breaker + 1
+		Next
+	
+End Function
+	
+//自动连续保存团单，保存文件名为block名
+Function GroupArrAuto()
+		For Each i In blockcode_read
+			If i = "xx" Then 
+			Exit For 
+			End If
+			j = block_name(breaker)
+			TracePrint i
+			TracePrint j
+			Call Lib.OVERNIGHTREPORTS.GroupArr(i,j)
+			Delay 10000
+			breaker = breaker + 1
+		Next
+End Function
+
+
+//获取当前窗口句柄，并设置输入法为英文，窗口最大化。
+hwnd = Plugin.Window.Find("SunAwtFrame", 0)
+Call Plugin.SysEx.SetInputMethod(hwnd, "中文（简体） - 美式键盘")
+Call Plugin.Window.Max(hwnd)
+Call Plugin.Window.Active(hwnd,0)
+
+
+//主弹窗选择器
+MoveTo 590,590
+report_selector = InputBox(  _
+	"请输入对应的报表编号（默认为夜审后操作）。" &vbCR&vbCR& _
+	"（报表将保存至 开始菜单-文档）。" &vbCR&vbCR&vbCR& _
+	"1  - Guest INH Complimentary" &vbCR& _
+	"2  - NA02-Manager Flash" &vbCR& _
+	"3  - RS05-（前后15天）History & Forecast" &vbCR& _
+	"4  - RS05-（FO当月）History & Forecast" &vbCR& _
+	"5  - RS05-（FO次月）History & Forecast" &vbCR& _
+	"6  - FO01-VIP Arrival (VIP Arr)" &vbCR& _
+	"7  - Guest In House w/o Due Out " &vbCR& _
+	"8  - FO03-VIP DEP" &vbCR& _
+	"9  - FO01-Arrival Detailed" &vbCR& _
+	"10 - FO02-Guests INH by Room" &vbCR& _
+	"11 - FO03-Departures" &vbCR& _
+	"12 - FO11-Credit Limit " &vbCR& _
+	"13 - FO13-Package Forecast（仅早餐）" &vbCR& _
+	"14 - Rooms-housekeepingstatus" &vbCR& _
+	"15 - HK03-OOO" &vbCR& _
+	"16 - Group Rooming List " &vbCR& _
+	"17 - Group In House" &vbCR& _
+	"18 - FO08-No Show" &vbCR& _
+	"19 - Cancellations" &vbCR&vbCR& _
+	"pu - 昨日On-day Pickup 报表" &vbCR& _
+	"garr - 保存当天团单" &vbCR&vbCR& _
+	"666 - 保存以上所有报表（执行时间约8分钟，期间请勿操作电脑）","Report Master","666")
+
+//根据输入框输入内容，判断调用哪个函数生成报表
+Select Case LCase(report_selector)
+	Case "1"
+	report = "1  - Guest INH Complimentary"
+	Call Lib.OVERNIGHTREPORTS.Comp()
+	Delay 300
+	Call open_documents(report)
+
+	Case "2"
+	report = "2  - NA02-Manager Flash"
+	Call Lib.OVERNIGHTREPORTS.NA02()
+	Delay 300
+	Call open_documents(report)
+
+	Case "3"
+	report = "3  - （前后15天）RS05-History & Forecast"
+	Call Lib.OVERNIGHTREPORTS.RS05()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "4"
+	report = "4  - RS05-（FO当月）History & Forecast"
+	Call Lib.OVERNIGHTREPORTS.RS05this()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "5"
+	report = "5  - RS05-（FO次月）History & Forecast"
+	Call Lib.OVERNIGHTREPORTS.RS05next()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "6"
+	report = "6  - FO01-VIP Arrival (VIP Arr)"
+	Call Lib.OVERNIGHTREPORTS.VIPARR()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "7"
+	report = "7  - Guest In House w/o Due Out"
+	Call Lib.OVERNIGHTREPORTS.VIPINH()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "8"
+	report = "8  - FO03-VIP DEP"
+	Call Lib.OVERNIGHTREPORTS.VIPDEP()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "9"
+	report = "9  - FO01-Arrival Detailed"
+	Call Lib.OVERNIGHTREPORTS.FO01()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "10"
+	report = "10 - FO02-Guests INH by Room"
+	Call Lib.OVERNIGHTREPORTS.FO02()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "11"
+	report = "11 - FO03-Departures"
+	Call Lib.OVERNIGHTREPORTS.FO03()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "12"
+	report = "12 - FO11-Credit Limit"
+	Call Lib.OVERNIGHTREPORTS.FO11()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "13"
+	report = "13 - FO13-Package Forecast（仅早餐）"
+	Call Lib.OVERNIGHTREPORTS.FO13BF()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "14"
+	report = "14 - Rooms-housekeepingstatus"
+	Call Lib.OVERNIGHTREPORTS.Rooms()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "15"
+	report = "15 - HK03-OOO"
+	Call Lib.OVERNIGHTREPORTS.HK03()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "16"
+	report = "16 - Group Rooming List"
+	Call Lib.OVERNIGHTREPORTS.GroupRoom()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "17"
+	report = "17 - Group In House"
+	Call Lib.OVERNIGHTREPORTS.GroupIn()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "18"
+	report = "18 - FO08-No Show"
+	Call Lib.OVERNIGHTREPORTS.NoShow()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "19"
+	report = "19 - Cancellations"
+	Call Lib.OVERNIGHTREPORTS.CXL()
+	Delay 300
+	Call open_documents(report)
+	
+	Case "pu"
+	report = "on-day pick up"
+	search_date = inputbox("请输入查询日期：（格式为mmddyyyy）","On-day Pickup")
+	Call Lib.OVERNIGHTREPORTS.ODPick(search_date)
+	Delay 300
+	Call open_documents(report)
+	
+	//Onday Arr 团单保存
+	Case "garr"
+	report = "团单"
+	
+	//生成当天日期字符串，用于文件夹路径
+	my_year = Cstr(Year(Now))
+	my_month = Month(Now)
+	If my_month < 10 Then 
+		my_month = "0" & Cstr(my_month)
+	Else my_month = Cstr(my_month)
+	End If
+	my_day = Day(Now)
+	If my_day < 10 Then 
+		my_day = "0" & Cstr(my_day)
+	Else my_day = Cstr(my_day)
+	End If
+	
+	//空数组，用于存放自动读取到的blockcode和block名
+	blockcode_read = Array("xx", "xx", "xx", "xx", "xx", "xx", "xx", "xx", "xx")
+	block_name = Array("xx", "xx", "xx", "xx", "xx", "xx", "xx", "xx", "xx")
+	
+	file_name = "Z:\9-ON DAY GROUP DETAILS\" & my_year & "\" & my_year & my_month & "\"& my_year & my_month & my_day &"Group ARR&DEP.xlsx"
+	
+	Call Plugin.Office.OpenXls(file_name)   
+	
+	row = 4
+	Call blockcode_reader()
+	row = 4
+	count = 0
+	Call block_name_reader()
+	
+	Call Plugin.Office.CloseXls(file_name)
+	
+	block_name_str = Join(block_name, vbCr)
+	block_name_str = Replace(block_name_str, "xx", "")
+	TracePrint block_name_str
+	
+	//团队信息确认及自动/手动输入选择
+	info_conf = MsgBox( _
+		"请确认团队信息"&vbCr&vbCr& _
+		blockcode_read_str &vbCr& _
+		block_name_str &vbCr&vbCr&vbCr& _
+		"是(Y)：自动保存上述团队团单"&vbCr& _
+		"否(N)：手动录入block code保存团单"&vbCr& _
+		"取消 ：退出" _
+		,vbYesNoCancel+vbSystemModal,"Arrival 团单保存")
+		
+	If info_conf = vbNo Then 
+		Call GroupArr()
+	ElseIf info_conf = vbYes Then
+		Call GroupArrAuto()
+	End If
+	
+	//以防插件不生效，模拟按键来打开关闭excel表清除进程
+	Call Plugin.Office.CloseXls(file_name)
+	RunApp file_name
+	Delay 150
+	KeyDown "Alt", 1
+	Delay 150
+	KeyDown "F4", 1
+	Delay 50
+	KeyUp "Alt", 1
+	Delay 1
+	KeyUp "F4", 1
+	Delay 1000
+	Call open_documents(report)
+	
+//	//FedEx INH 报表保存
+//	Case "fedex"
+//	my_year = Cstr(Year(Now))
+//	my_month = Month(Now)
+//	If my_month < 10 Then 
+//		my_month = "0" & Cstr(my_month)
+//	Else my_month = Cstr(my_month)
+//	End If
+//	
+//	my_day = Day(Now)
+//	If my_day < 10 Then 
+//		my_day = "0" & Cstr(my_day)
+//	Else my_day = Cstr(my_day)
+//	End If
+//	
+//	fedex_blockcode = my
+
+	
+	//执行所有报表保存
+	Case "666"
+	Call Plugin.Msg.Tips("连续保存报表中，期间请勿操作电脑")
+	LockMouse
+	Call Lib.OVERNIGHTREPORTS.Comp()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.NA02()
+	Delay 10000
+
+	Call Lib.OVERNIGHTREPORTS.RS05()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.RS05this()
+	Delay 10000
+	
+	my_day = Day(Date - 1)
+	last_day = Day(DateSerial(Year(Date - 1), Month(Date - 1) + 1, 1 - 1))
+	If last_day - my_day <= 5 Then 
+		Call Lib.OVERNIGHTREPORTS.RS05next()
+	End If
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.VIPARR()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.VIPINH()
+	Delay 23000
+
+	Call Lib.OVERNIGHTREPORTS.VIPDEP()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.FO01()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.FO02()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.FO03()
+	Delay 10000	
+
+	Call Lib.OVERNIGHTREPORTS.FO11()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.FO13BF()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.Rooms()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.HK03()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.GroupRoom()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.GroupIn()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.NoShow()
+	Delay 10000
+	
+	Call Lib.OVERNIGHTREPORTS.CXL()
+	Delay 10000
+	UnlockMouse
+	Call open_documents("全部报表")
+End Select
