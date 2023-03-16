@@ -1,0 +1,170 @@
+[General]
+SyntaxVersion=2
+BeginHotkey=112
+BeginHotkeyMod=2
+PauseHotkey=0
+PauseHotkeyMod=0
+StopHotkey=123
+StopHotkeyMod=0
+RunOnce=1
+EnableWindow=
+MacroID=953e4d16-b23a-47f4-a083-447d8ad7b278
+Description=Q.GroupKeys
+Enable=0
+AutoRun=0
+[Repeat]
+Type=0
+Number=1
+[SetupUI]
+Type=2
+QUI=
+[Relative]
+SetupOCXFile=
+[Comment]
+
+[Script]
+Dim gk, co_date_loop, co_time_loop, notifier, next_rm, room_num
+Dim co_date_input, co_time_input
+Dim co_date_read, co_time_read
+Dim end_reminder
+
+//获取当前系统用户名（用于确定“我的文档”路径）
+Set WshNetwork = CreateObject("WScript.Network")
+//MessageBox "你的域名是: " & WshNetwork.UserDomain
+//MessageBox "你的计算机系统名称是:" & WshNetwork.ComputerName
+//MessageBox "你是:" & WshNetwork.UserName
+LockMouse 
+MoveTo 590,590
+gk = MsgBox("即将进行旅行团卡制作" &vbCR&vbCR&"启动前请完成以下准备工作：" &vbCR& _
+			 "1、请先保存需要制卡的团Rooming List；"  &vbCR& _
+			  "2、将Rooming List的房号录入桌面“GroupKeys.xls”文件的第一列；"  &vbCR& _
+			  " 2.1、如需单独修改某房间退房日期时间，请分别填入GroupKeys.xls第二/第三列"  &vbCR& _
+			  "  日期格式：yyyy-mm-dd"  &vbCR& _
+			  "  时间格式：HH:MM"  &vbCR& _
+              "3、确保VingCard已经打开处于Check-in界面。", vbOKCancel + vbSystemModal,"GroupKeys - 团卡助手")
+Delay 300
+UnlockMouse
+
+If gk = vbOK Then 
+        co_date_input = Inputbox("请输入退房日期（格式为yyyy-mm-dd）", "GroupKeys - 团卡助手")
+        co_time_input = Inputbox("请输入退房时间（格式为 HH:MM）","GroupKeys - 团卡助手","13:00")
+
+        notifier = MsgBox( _
+                        "当前团队制卡信息："&vbCR&vbCR& _
+                        "退房日期："&co_date_input &vbCR& _
+                        "退房时间："&co_time_input &vbCR&vbCR, vbOKCancel + vbSystemModal,"GroupKeys - 团卡助手")		
+		
+		If notifier = vbOK Then 
+
+	        	LockMouse
+	        	Call Plugin.Office.OpenXls("C:\Users\"&WshNetwork.UserName&"\Desktop\GroupKeys.xls")  
+	        	room_num = Plugin.Office.ReadXls(1, 1, 1)
+	        	co_date_read = Plugin.Office.ReadXls(1, 1, 2)
+	        	co_time_read = Plugin.Office.ReadXls(1, 1, 3)
+	        	Call Plugin.Sys.SetCLB(room_num)   
+	        	TracePrint room_num
+	        	row = 1
+
+	        	Do While room_num <> ""
+	        	co_date_loop = co_date_input
+	        	co_time_loop = co_time_input
+	        	
+	        	TracePrint co_date_loop
+	            TracePrint co_time_loop
+	        	
+	          	//以下为录制部分
+	            //1、输入房号
+				MoveTo 421, 412
+				Delay 300
+				LeftDown 1
+				MoveTo 255, 415
+				Delay 150
+				LeftUp 1
+				MoveTo 387, 399
+				Delay 150
+				LeftDoubleClick 1
+				Delay 78
+				MoveTo 395, 415
+				Delay 150
+				KeyDown "Ctrl", 1
+				Delay 15
+				KeyDown "V", 1
+				Delay 78
+				KeyUp "Ctrl", 1
+				Delay 16
+				KeyUp "V", 1
+				Delay 150
+				
+	            //2、输入co_time和co_date
+	            If co_date_read <> "" Then 
+	            	co_date_loop = co_date_read
+	            End If
+	            If co_time_read <> "" Then 
+	            	co_time_loop = co_time_read
+	            End If
+	            
+	            TracePrint co_date_loop
+	            TracePrint co_time_loop
+	            
+				MoveTo 417, 578
+				Delay 150
+				LeftDown 1
+				MoveTo 233, 584
+				Delay 150
+				LeftUp 1
+				Delay 100
+	        	SayString co_date_loop
+	            Delay 100
+				MoveTo 524, 577
+				Delay 100
+				LeftDoubleClick 1
+				Delay 100
+				SayString co_time_loop
+				
+	            //3、输入房卡制卡数量“2”，并encode
+				MoveTo 479, 624
+				MoveTo 505, 737
+				Delay 150
+				LeftDown 1
+				MoveTo 505, 738
+				Delay 93
+				LeftUp 1
+				Delay 100
+				KeyDown "2", 1
+				Delay 100
+				KeyUp "2", 1
+				Delay 100
+				KeyDown "Alt", 1
+				Delay 100
+				KeyDown "E", 1
+				Delay 100
+				KeyUp "Alt", 1
+				KeyUp "E", 1
+					
+	            next_rm = MsgBox( _
+	            "已做房卡："&room_num&vbCR&vbCR& _
+	            " - 按是(Y)制作下一个；"&vbCR&" - 按否(N)退出制卡。", vbYesNo + vbSystemModal,"GroupKeys - 团卡助手")
+	            
+	            If next_rm = vbNo Then 
+	            	Goto ScriptEnd
+	            End If
+	                
+	            row = row + 1
+	            room_num = Plugin.Office.ReadXls(1, row, 1)
+	            co_date_read = Plugin.Office.ReadXls(1, row, 2)
+	        	co_time_read = Plugin.Office.ReadXls(1, row, 3)
+	            Call Plugin.Sys.SetCLB(room_num) 
+
+	        	Loop
+		Else GOTO ScriptEnd
+		
+	End If
+
+Else GOTO ScriptEnd
+End If
+
+UnlockMouse
+end_reminder = MsgBox( "已完成团队制卡，请与Opera/蓝豆系统核对是否正确！",vbOKOnly + vbSystemModal,"GroupKeys - 团卡助手")
+
+Rem ScriptEnd
+Call Lib.系统.结束进程("et.exe")
