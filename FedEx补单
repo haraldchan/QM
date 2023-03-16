@@ -1,0 +1,105 @@
+[General]
+SyntaxVersion=2
+BeginHotkey=121
+BeginHotkeyMod=0
+PauseHotkey=0
+PauseHotkeyMod=0
+StopHotkey=123
+StopHotkeyMod=0
+RunOnce=1
+EnableWindow=
+MacroID=693a6975-dbbc-40d8-ac08-36e5e87ee184
+Description=FedEx补单
+Enable=1
+AutoRun=0
+[Repeat]
+Type=0
+Number=1
+[SetupUI]
+Type=2
+QUI=
+[Relative]
+SetupOCXFile=
+[Comment]
+
+[Script]
+Dim conf, name, ciDate, coDate, gt
+Dim daysAcutal
+Dim row , dateRender, dateRenderStr, renderRow
+Dim fedexDB, temp, pathDB, pathTemp, saveName
+Dim dateRef
+
+pathDB = "Z:\19-个人文件夹\HC\FedEx - 房型房量统计表\2023补单\fedexDB.xls"
+pathTemp = "Z:\19-个人文件夹\HC\FedEx - 房型房量统计表\2023补单\temp.xls"
+fedexDB = Plugin.lxj_Office.lxj_ExcelOpen (pathDB, 0)
+conf = Plugin.lxj_Office.lxj_ExcelRead (1, 2, 1, fedexDB)
+row = 2
+count = 1
+
+Do Until conf = ""
+	temp = Plugin.lxj_Office.lxj_ExcelOpen (pathTemp, 0)
+	renderRow = 30
+	
+	TracePrint "count = "&count
+	
+	//将fedexDB信息读入变量
+	conf = Plugin.lxj_Office.lxj_ExcelRead (1, row, 1, fedexDB)
+	name = Plugin.lxj_Office.lxj_ExcelRead (1, row, 2, fedexDB)
+	ciDate = Plugin.lxj_Office.lxj_ExcelRead (1, row, 3, fedexDB)
+	coDate = Plugin.lxj_Office.lxj_ExcelRead (1, row, 4, fedexDB)
+	room = Plugin.lxj_Office.lxj_ExcelRead (1, row, 5, fedexDB)
+	daysActual = CInt(Plugin.lxj_Office.lxj_ExcelRead(1, row, 6, fedexDB))
+	gt = Plugin.lxj_Office.lxj_ExcelRead(1, row, 7, fedexDB)
+	dateRender = Plugin.lxj_Office.lxj_ExcelRead(1, row, 8, fedexDB)
+
+	//将变量填写到temp的表头
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 16, 15, conf, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 10, 3, name, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 18, 15, ciDate, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 22, 6, coDate, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 19, 15, coDate, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 17, 15, room, temp
+
+	//渲染Billing费用、CL内容第一行
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 29, 2, ciDate, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 29, 7, room, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 29, 8, name, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 29, 4, "Room Charge", temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 29, 15, "1,265.00", temp
+	
+	
+	//渲染Billing费用、CL内容
+	i = 1
+	Do While i < daysActual
+		dateRender = dateRender + 1
+		dateRenderStr = "23/02/0" & dateRender
+		Plugin.lxj_Office.lxj_ExcelWrite 1, renderRow, 2, dateRenderStr, temp
+		Plugin.lxj_Office.lxj_ExcelWrite 1, renderRow, 7, room, temp
+		Plugin.lxj_Office.lxj_ExcelWrite 1, renderRow, 8, name, temp
+		Plugin.lxj_Office.lxj_ExcelWrite 1, renderRow, 4, "Room Charge", temp
+		Plugin.lxj_Office.lxj_ExcelWrite 1, renderRow, 15, "1,265.00", temp
+		renderRow = renderRow + 1
+		i = i + 1
+		TracePrint i
+	Loop
+	
+	//渲染City Ledger 及gt
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 34, 2, coDate, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 34, 4, "City Ledger", temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 34, 7, room, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 34, 8, name, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 34, 17, gt, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 37, 15, gt, temp
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 37, 17, gt, temp
+	
+	Plugin.lxj_Office.lxj_ExcelWrite 1, 17, 15, room, temp
+	
+	saveName = "Z:\19-个人文件夹\HC\FedEx - 房型房量统计表\2023补单\fin\"&conf&".xls"
+	Plugin.lxj_Office.lxj_ExcelSaveAs saveName, temp
+	
+	row = row + 1
+	count = count + 1
+	Plugin.lxj_Office.lxj_ExcelClose temp
+Loop
+
+Call Lib.系统.结束进程("et.exe")
