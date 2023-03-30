@@ -1,0 +1,485 @@
+[General]
+SyntaxVersion=2
+BeginHotkey=121
+BeginHotkeyMod=0
+PauseHotkey=19
+PauseHotkeyMod=0
+StopHotkey=123
+StopHotkeyMod=0
+RunOnce=1
+EnableWindow=
+MacroID=4c35ac58-67b3-48f2-ba66-b557c134e2e1
+Description=alphatest_0.0.2
+Enable=1
+AutoRun=0
+[Repeat]
+Type=0
+Number=1
+[SetupUI]
+Type=1
+QUI=Form1
+[Relative]
+SetupOCXFile=
+[Comment]
+
+[UIPackage]
+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
+
+
+[Script]
+//启动界面：Reservation list for [FedEx block]
+//此界面筛选：Conf. No.
+//筛选批量预订日期：Advanced - Arrival：选择做预订的当天（一般为提前留房的一天，如果arr时间是13点后，pmsCiDate则会自动往后推一天）
+//alphatest 0.0.2：日期差异、退前一天已抽到utils库
+
+Dim schdPath, fedexSchd, sheetIndex
+Dim tripNum, roomQty, flightIn, schdCiDate, schdETA, stayHours, schdCoDate, schdETD, flightOut
+Dim comment
+Dim row
+Dim pmsCiDate, pmsCoDate, daysActual
+Dim splitHours, h, h2, m, zeroPkg
+
+Function dateStrRearrangeDash(originalDate)
+	Dim yearStr, monthStr, dayStr, rearrangedDate
+	originalDate = Replace(originalDate, "-", "")
+	yearStr = Mid(originalDate, 1, 4)
+	monthStr = Mid(originalDate, 5, 2)
+	dayStr = Mid(originalDate, 7, 2)
+	rearrangedDate = monthStr & dayStr & yearStr
+	dateStrRearrange = CStr(rearrangedDate)
+End Function
+
+Function dateStrRearrangeSlash(originalDate)
+	newDateSplit = Split(originalDate, "/")
+	If newDateSplit(1) < 10 Then 
+		newDateSplit(1) = "0"&newDateSplit(1)
+	End If
+	If newDateSplit(2) < 10 Then 
+		newDateSplit(2) = "0"&newDateSplit(2)
+	End If
+	TracePrint newDateSplit(1)&newDateSplit(2)&newDateSplit(0)
+	dateStrRearrangeSlash = CStr(newDateSplit(1)&newDateSplit(2)&newDateSplit(0))
+End Function
+
+Function dateDiffInDays(date1Str, date2Str)
+    Dim date1
+        date1 = CDate(date1Str)
+    Dim date2
+        date2 = CDate(date2Str)
+    Dim diffDays
+		diffDays = DateDiff("d", date1, date2)
+		dateDiffInDays = Abs(diffDays)
+End Function
+
+Function substractOneDay(dateStr)
+    Dim newDate
+        newDate = CDate(dateStr)
+    newDate = DateAdd("d", -1, newDate)
+    substractOneDay = CStr(newDate)
+End Function
+
+Event Form1.Button1.Click
+	Dim path
+		Do
+			path = Plugin.File.SelectFile()
+			If Right(path, 4) = ".xls" Then 
+				Exit Do
+			Else 
+				MessageBox "请选择相应xls文件"
+				Exit Do
+			End If
+		Loop
+		Form1.InputBox1.Text = path
+
+End Event
+schdPath = CStr(Form1.InputBox1.Text)
+
+Call Lib.utils.opera_winmax()
+
+sheetIndex = CInt(InputBox("请输入第几个标签","FedEx Scheduled Resv(Batch)"))
+
+row = 4
+fedexSchd = Plugin.lxj_Office.lxj_ExcelOpen(schdPath, 0)
+tripNum = Plugin.lxj_Office.lxj_ExcelRead(1, row, 1, fedexSchd)
+
+
+Do Until tripNum = ""
+
+	//读取各个变量（读取的sheet需要应设置为变量！）
+	tripNum = Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 1, fedexSchd)
+	roomQty = Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 2, fedexSchd)
+	flightIn = Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 3, fedexSchd)&Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 4, fedexSchd)
+	
+	//schdCiDay转换为"yyyy-mm-dd"格式
+	schdCiDate = Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 5, fedexSchd)
+	schdCiDate = Split(schdCiDate, "/")
+	schdMonth = schdCiDate(0)
+	schdDay = schdCiDate(1)
+	schdCiDate = Year(Now) & "-" & schdMonth & "-" & schdDay
+	schdETA = Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 6, fedexSchd)
+	stayHours = Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 7, fedexSchd)
+	
+	//schdCiDay转换为"yyyy-mm-dd"格式
+	schdCoDate = Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 8, fedexSchd)
+	schdCoDate = Split(schdCoDate, "/")
+	schdMonth = schdCoDate(0)
+	schdDay = schdCoDate(1)
+	schdCoDate = Year(Now) & "-" & schdMonth & "-" & schdDay
+	
+	schdETD = Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 9, fedexSchd)
+	flightOut = Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 10, fedexSchd)&Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 11, fedexSchd)
+	
+	TracePrint tripNum &"，"& roomQty &"，"& roomQty &"，"& flightIn &"，"& schdCiDate &"，"& schdETA &"，"& stayHours &"，"& schdCoDate &"，"& schdETD &"，"& flightOut
+
+	//切割字符串为h、m
+	splitHours = Split(stayHours, ":")
+	h = splitHours(0)
+	m = splitHours(1)
+	
+	//判断实际需要收费的天数
+	If h < 24 Then
+    	daysActual = 1
+	ElseIf h Mod 24 = 0 And m = 0 Then
+    	daysActual = h / 24
+	ElseIf h >= 24 Or m <> 0 Then
+    	daysActual = Int((h / 24) + 1)
+	End If
+	TracePrint "daysActual: " & daysActual
+	
+	//12点前的ARR均提前一天留房
+	h2 = Split(schdETA, ":")(0)
+	If h2 < 13 Then
+    	pmsCiDate = substractOneDay(schdCiDate)
+	Else 
+    	pmsCiDate = schdCiDate
+	End If
+	TracePrint pmsCiDate
+	pmsCoDate = schdCoDate
+	
+	//判断pms中房晚数与实际收费晚数的差异，用于0租差异判断，以及字符串格式转换
+	Dim pmsNts
+	pmsNts = dateDiffInDays(pmsCiDate, pmsCoDate)
+	TracePrint pmsCiDate
+	TracePrint pmsCoDate
+	
+	If InStr(pmsCiDate, "-") Then 
+		pmsCiDate = dateStrRearrangeDash(pmsCiDate)
+	Else 
+		pmsCiDate = dateStrRearrangeSlash(pmsCiDate)
+	End If
+	
+	pmsCoDate = dateStrRearrangeDash(pmsCoDate)
+	TracePrint "pmsNts = " & pmsNts
+	TracePrint "pmsCiDate = " & pmsCiDate & "; schdCiDate = " & schdCiDate
+	TracePrint "pmsCoDate = " & pmsCoDate & "; schdCoDate = " & schdCoDate
+	comment = "RM INCL 1BBF TO CO Hours@hotel "& stayHours &"  = "& daysActual &" days,Actual Arr "& schdCiDate & " - " & schdCoDate
+	TracePrint "房间数量:" & roomQty
+	
+	TracePrint pmsCoDate
+	schdETA = Replace(schdETA, ":", "")
+	schdETD = Replace(schdETD, ":", "")
+	
+	//根据同一Trip内房数决定更改多少个预订
+	For i = 1 To CInt(roomQty)
+	
+		//已打开Reservation List并完成设定，开始修改预订。
+		//打开预订
+		Delay 1000
+		MoveTo 399, 264
+		Delay 150
+		KeyDown "Alt", 1
+		Delay 150
+		KeyDown "E", 1
+		Delay 150
+		KeyUp "Alt", 1
+		Delay 150
+		KeyUp "E", 1
+		Delay 1500
+		
+		//打开Profile，录入Inbound Flight
+		MoveTo 467, 221
+		Delay 1000
+		LeftClick 1
+		Delay 300
+		MoveTo 442, 284
+		Delay 300
+		LeftDown 1
+		MoveTo 214, 289
+		Delay 300
+		LeftUp 1
+		Delay 300
+		KeyDown "BackSpace", 1
+		MoveTo 202, 284
+		Delay 10
+		KeyUp "BackSpace", 1
+		SayString flightIn &" "& tripNum
+		MoveTo 594, 414
+		Delay 150
+		KeyDown "Alt", 1
+		Delay 150
+		KeyDown "C", 1
+		Delay 150
+		KeyUp "Alt", 1
+		Delay 300
+		KeyUp "C", 1
+		MoveTo 576, 541
+		Delay 150
+		LeftClick 1
+		Delay 300
+		MoveTo 798, 500
+		Delay 500
+		LeftClick 1
+		Delay 500
+	
+		//录入pmsCiDate、pmsCoDate
+		MoveTo 332, 356
+		Delay 1000
+		LeftDown 1
+		MoveTo 178, 360
+		Delay 300
+		LeftUp 1
+		MoveTo 172, 360
+		Delay 300
+		SayString pmsCiDate
+		Delay 300
+		
+		MoveTo 335, 405
+		Delay 300
+		LeftDown 1
+		MoveTo 182, 409
+		Delay 300
+		LeftUp 1
+		MoveTo 207, 415
+		Delay 300
+
+		SayString pmsCoDate
+		Delay 300
+		TracePrint pmsCoDate
+		
+		//录入ETA和ETD
+		MoveTo 294, 597
+		Delay 200
+		LeftClick 1
+		Delay 200
+		KeyDown "Enter", 1
+		Delay 200
+		KeyUp "Enter", 1
+		Delay 200
+		KeyDown "Enter", 1
+		Delay 200
+		KeyUp "Enter", 1
+		Delay 200
+		MoveTo 294, 597
+		LeftClick 1
+		Delay 200
+		Plugin.Sys.SetCLB schdETA
+		Delay 200
+		KeyDown "Ctrl", 1
+		Delay 83
+		KeyDown "V", 1
+		Delay 200
+		KeyUp "V", 1
+		Delay 18
+		KeyUp "Ctrl", 1
+		Delay 200
+		TracePrint schdETA
+		
+		MoveTo 499, 597
+		Delay 200
+		LeftDown 1
+		MoveTo 342, 594
+		Delay 200
+		LeftUp 1
+		Delay 200
+		Plugin.Sys.SetCLB schdETD
+		Delay 200
+		KeyDown "Ctrl", 1
+		Delay 83
+		KeyDown "V", 1
+		Delay 200
+		KeyUp "V", 1
+		Delay 18
+		KeyUp "Ctrl", 1
+		TracePrint schdETD
+	
+		//抓取日期或ETA\ETD时间录入报错，并中止脚本
+		FindColor 579, 476, 579, 476, "002797",x,y   
+		If x > 0 and y > 0 Then 
+			MessageBox "信息录入出错，脚本已中止！" & vbCr & vbCr & "已录入到：" & tripNum & " " & flightIn & "第"&i&"个"
+			EndScript
+		End If
+	
+		//录入Comment
+		MoveTo 651, 598
+		Delay 200
+		LeftClick 1
+		Delay 200
+		SayString comment
+		Delay 200
+		
+		//录入TA Rec Loc部分（Inbound + Trip No.）
+		MoveTo 876, 558
+		Delay 200
+		LeftClick 1
+		Delay 200
+		SayString flightIn & " " & tripNum
+		Delay 200
+		
+		//录入More Fields部分 - Arr
+		MoveTo 236, 333
+		Delay 100
+		LeftClick 1
+		Delay 100
+		MoveTo 639, 459
+		Delay 100
+		LeftClick 1
+		SayString flightIn
+		Delay 100
+		MoveTo 613, 501
+		Delay 100
+		LeftClick 1
+		SayString pmsCiDate
+		Delay 100
+		MoveTo 632, 525
+		Delay 100
+		LeftClick 1
+		SayString schdETA
+		Delay 100
+		
+		//录入More Fields部分 - Dep 并关闭
+		MoveTo 870, 461
+		Delay 100
+		LeftClick 1
+		SayString flightOut
+		Delay 100
+		MoveTo 862, 508
+		Delay 100
+		LeftClick 1
+		SayString pmsCoDate
+		Delay 100
+		MoveTo 864, 524
+		Delay 370
+		LeftClick 1
+		SayString schdETD
+		Delay 100
+		MoveTo 841, 680
+		Delay 100
+		LeftClick 1
+	
+		//Daily Details入租
+		//打开
+		MoveTo 372, 524
+		Delay 300
+		LeftClick 1
+		Delay 300
+		KeyDown "Alt", 1
+		Delay 300
+		KeyDown "D", 1
+		Delay 300
+		KeyUp "Alt", 1
+		Delay 300
+		KeyUp "D", 1
+				
+			//根据实际收款天数差异，决定入租金额（1265/0）
+			If daysActual = pmsNts Then
+    			For j = 1 To daysActual
+        		// 此处修改为Daily details改租操作脚本内容，下同。
+        		TracePrint "第 "&j&" 晚房租：1265！" 
+        			SayString "1265"
+   					KeyPress "Down", 1
+   					Delay 100
+    			Next 
+			Else
+    			// 否则只会有pmsNts多一天的情况，所以多出一次入0租。
+    			For j = 1 To daysActual
+        			SayString "1265"
+   					KeyPress "Down", 1
+   					Delay 100
+    			Next 
+    			SayString "0"
+    			zeroPkg = true
+			End If
+			
+		MoveTo 728, 568
+		Delay 300
+		KeyDown "Alt", 1
+		Delay 300
+		KeyDown "O", 1
+		Delay 300
+		KeyUp "O", 1
+		Delay 300
+		KeyUp "Alt", 1
+		Delay 300
+
+		
+		//根据是否有入0租调整Package金额（如需调整，变量zeroPkg为true）
+		If zeroPkg = true Then 
+		
+			MoveTo 348, 551
+			Delay 100
+			LeftClick 1
+			MoveTo 433, 633
+			Delay 500
+			LeftClick 1
+			Delay 100
+			LeftClick 1
+			MoveTo 433, 632
+			Delay 300
+			KeyDown "BackSpace", 1
+			Delay 100
+			KeyUp "BackSpace", 1
+			Delay 100
+			SayString "0"
+			Delay 300
+			MoveTo 530, 433
+			Delay 300
+			LeftDown 1
+			MoveTo 651, 437
+			Delay 300
+			LeftUp 1
+			MoveTo 648, 506
+			Delay 300
+			KeyDown "BackSpace", 1
+			MoveTo 648, 517
+			Delay 100
+			KeyUp "BackSpace", 1
+			Delay 100
+			SayString "0"
+			Delay 300
+			MoveTo 679, 579
+			Delay 300
+			LeftDown 1
+			MoveTo 679, 580
+			Delay 300
+			LeftUp 1
+			MoveTo 911, 639
+			Delay 300
+			LeftClick 1
+		End If
+		
+		//关闭并保存修改内容
+		MoveTo 910, 648
+		Delay 300
+		LeftClick 1
+		MoveTo 672, 546
+		Delay 300
+		LeftClick 1
+		MoveTo 668, 545
+		Delay 300
+		KeyDown "Down", 1
+		MoveTo 667, 546
+		Delay 10
+		KeyUp "Down", 1
+		Delay 300
+
+	Next
+	
+	zeroPkg = false
+	row = row + 1
+	tripNum = Plugin.lxj_Office.lxj_ExcelRead(sheetIndex, row, 1, fedexSchd)
+Loop
+
+Plugin.lxj_Office.lxj_ExcelClose fedexSchd
+Call Lib.系统.结束进程("et.exe")
+
+MessageBox "已完成FedEx 预订修改，请抽检以确保准确！"
