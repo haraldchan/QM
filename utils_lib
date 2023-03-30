@@ -1,0 +1,45 @@
+[General]
+SyntaxVersion=2
+MacroID=f62a8331-1601-4649-8ab1-88ec826e0865
+[Comment]
+
+[Script]
+//获取当前Opera窗口句柄，并设置输入法为英文，窗口最大化。
+Function opera_winmax()
+	hwnd = Plugin.Window.Find("SunAwtFrame", 0)
+	Call Plugin.SysEx.SetInputMethod(hwnd, "中文（简体） - 美式键盘")
+	Call Plugin.Window.Max(hwnd)
+End Function
+
+//日期格式转换："yyyy-mm-dd" => "mmddyyyy"。
+Function dateStrRearrangeDash(originalDate)
+    Dim yearStr, monthStr, dayStr, rearrangedDate
+    originalDate = Replace(originalDate, "-", "")
+    yearStr = Mid(originalDate, 1, 4)
+    monthStr = Mid(originalDate, 5, 2)
+    dayStr = Mid(originalDate, 7, 2)
+    rearrangedDate = monthStr & dayStr & yearStr
+    dateStrRearrange = CStr(rearrangedDate)
+End Function
+
+//日期格式转换："yyyy/m/d" => "mmddyyyy"。
+Function dateStrRearrangeSlash(originalDate)
+    newDateSplit = Split(originalDate, "/")
+    If newDateSplit(1) < 10 Then 
+        newDateSplit(1) = "0"&newDateSplit(1)
+    End If
+    If newDateSplit(2) < 10 Then 
+        newDateSplit(2) = "0"&newDateSplit(2)
+    End If
+    TracePrint newDateSplit(1)&newDateSplit(2)&newDateSplit(0)
+    dateStrRearrangeSlash = CStr(newDateSplit(1)&newDateSplit(2)&newDateSplit(0))
+End Function
+
+//找色捕获报错弹窗位置及颜色，并终止脚本。
+Function colorError(xPos, yPos, color, errorMsg)
+        FindColor xPos, yPos, xPos, yPos, CStr(color), x,y   
+        If x > 0 and y > 0 Then 
+            MessageBox errorMsg
+            EndScript
+        End If
+End Function
